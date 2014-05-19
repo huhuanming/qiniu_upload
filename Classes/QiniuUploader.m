@@ -113,39 +113,4 @@
     return operation;
 }
 
-//- (void)uploadFile:(NSData *)fileData key:(NSString *)key
-//{
-//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    
-//    if (key)
-//        parameters[@"key"] = key;
-//    }
-//    parameters[@"token"] = [self.token uploadToken];
-//    AFHTTPRequestOperationManager *operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://up.qiniu.com"]];
-//    NSMutableURLRequest *request = [[operationManager.requestSerializer
-//                                     multipartFormRequestWithMethod:@"POST"
-//                                    URLString:kQiniuUpUploadUrl
-//                                   parameters:parameters
-//                    constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//                                                                    if (mimeType) {
-//                                                                        [formData appendPartWithFileURL:fileURL
-//                                                                                                   name:@"file"
-//                                                                                               fileName:filePath
-//                                                                                               mimeType:mimeType
-//                                                                                                  error:nil];
-//                                                                    }else{
-//                                                                        [formData appendPartWithFormData:fileData  name:@"file"];
-//                                                                    }
-//                        
-//                                                                } error:nil]];
-//    
-//    
-//    AFHTTPRequestOperation *operation = [operationManager HTTPRequestOperationWithRequest:request
-//                                                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                                                                          complete(operation,nil);
-//                                                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                                                                          complete(operation,error);
-//                                                                      }];
-//}
-
 @end
