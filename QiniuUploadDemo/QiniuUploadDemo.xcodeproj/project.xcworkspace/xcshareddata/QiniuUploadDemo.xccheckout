@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C1D9C749-B30B-4AFD-A9B1-C2DB851C2F0C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>QiniuUploadDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>702CA186-C8D4-474B-960B-0CDDC6B9297F</key>
+		<string>https://github.com/huhuanming/qiniu_upload.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>QiniuUploadDemo/QiniuUploadDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>702CA186-C8D4-474B-960B-0CDDC6B9297F</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/huhuanming/qiniu_upload.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>702CA186-C8D4-474B-960B-0CDDC6B9297F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>702CA186-C8D4-474B-960B-0CDDC6B9297F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>qiniu_upload</string>
+		</dict>
+	</array>
+</dict>
+</plist>
