@@ -14,7 +14,7 @@ qiniu_upload 除了文件上传等基本功能完，还实现了多文件队列�
 
 #####Podfile
 	platform :ios, '6.0'
-	pod "qiniu_upload"
+	pod "QiniuUpload"
 
 
 ####手动安装
