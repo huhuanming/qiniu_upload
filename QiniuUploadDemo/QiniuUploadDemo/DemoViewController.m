@@ -9,9 +9,9 @@
 #import "DemoViewController.h"
 #import "QiniuUploader.h"
 
-#define scope @"motor"
-#define accessKey @"7mGeCoNe_ecBsW210i5a0VDu4Yz8nZ5Ph6xUlV2E"
-#define secretKey @"mUYYCo5yerv7ae28Ey1rfqAoiIEG4NkNqeITjn0m"
+#define scope @"yourScope"
+#define accessKey @"yourAccessKey"
+#define secretKey @"yourSecretKey"
 
 @interface DemoViewController ()<QiniuUploaderDelegate>
 

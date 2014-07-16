@@ -73,7 +73,6 @@
         parameters[@"key"] = theFile.key;
     }
     parameters[@"token"] = [self.token uploadToken];
-    
     NSMutableURLRequest *request = [operationManager.requestSerializer
                                      multipartFormRequestWithMethod:@"POST"
                                                           URLString:kQiniuUpUploadUrl
@@ -110,6 +109,7 @@
             [self.delegate uploadOneFileProgress:index UploadPercent:percent];
         }
     }];
+
     return operation;
 }
 

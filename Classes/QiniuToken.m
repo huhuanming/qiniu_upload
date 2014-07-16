@@ -30,7 +30,7 @@
 - (NSString *)uploadToken
 {
     NSMutableDictionary *authInfo = [[NSMutableDictionary alloc]init];
-    [authInfo setObject:@"motor" forKey:@"scope"];
+    [authInfo setObject:scope forKey:@"scope"];
     [authInfo setObject:[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]+300] forKey:@"deadline" ];
     //    [authInfo setObject:@"" forKey:@"callbackUrl"];
     //    [authInfo setObject:@"" forKey:@"callbackBodyType"];
