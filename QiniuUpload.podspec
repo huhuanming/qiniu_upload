@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "QiniuUpload"
-  s.version      = "0.1"
-  s.summary      = "支持批量上传的七牛上传sdk，慢慢会加入支持服务器回调服务器参数设置等功能，＝ ＝po主更新可能慢~"
+  s.version      = "0.1.1"
+  s.summary      = "支持批量上传的七牛上传sdk，修复了一些bug，慢慢会加入支持服务器回调服务器参数设置等等，开坑，更新慢~，如果po主收到催更邮件的话，会拼命更的"
 
   s.description  = <<-DESC
                    A longer description of QiniuUpload in Markdown format.
