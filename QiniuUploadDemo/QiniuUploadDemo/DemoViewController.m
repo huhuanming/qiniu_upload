@@ -53,7 +53,7 @@
 
 - (void)uploadOneFileSucceeded:(AFHTTPRequestOperation *)operation Index:(NSInteger)index ret:(NSDictionary *)ret
 {
-    NSLog(@"index:%d ret:%@",index,ret);
+    NSLog(@"index:%ld ret:%@",(long)index,ret);
 }
 
 - (void)uploadAllFilesComplete
@@ -62,13 +62,13 @@
 }
 - (void)uploadOneFileFailed:(AFHTTPRequestOperation *)operation Index:(NSInteger)index error:(NSError *)error
 {
-    NSLog(@"index:%d responseObject:%@",index,operation.responseObject);
+    NSLog(@"index:%ld responseObject:%@",(long)index,operation.responseObject);
 
 }
 
 - (void)uploadOneFileProgress:(NSInteger)index UploadPercent:(double)percent
 {
-    NSLog(@"index:%d percent:%lf",index,percent);
+    NSLog(@"index:%ld percent:%lf",(long)index,percent);
 }
 
 - (void)didReceiveMemoryWarning

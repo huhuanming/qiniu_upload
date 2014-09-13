@@ -10,29 +10,29 @@
 	<string>QiniuUploadDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>32804D2C-F995-4AA6-9026-78804107B281</key>
+		<key>6D9C40442099730E890A3C1304A3DE1755854D14</key>
 		<string>https://github.com/huhuanming/qiniu_upload.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>QiniuUploadDemo/QiniuUploadDemo.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>32804D2C-F995-4AA6-9026-78804107B281</key>
+		<key>6D9C40442099730E890A3C1304A3DE1755854D14</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/huhuanming/qiniu_upload.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>32804D2C-F995-4AA6-9026-78804107B281</string>
+	<string>6D9C40442099730E890A3C1304A3DE1755854D14</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>32804D2C-F995-4AA6-9026-78804107B281</string>
+			<string>6D9C40442099730E890A3C1304A3DE1755854D14</string>
 			<key>IDESourceControlWCCName</key>
 			<string>qiniu_upload</string>
 		</dict>
