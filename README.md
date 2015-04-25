@@ -6,7 +6,7 @@ qiniu_upload 是一款支持七牛云存储的ios/mac sdk。它基于AFNetworkin
 qiniu_upload 除了文件上传等基本功能完，还实现了多文件队列上传。
 
 UP 主开始填坑了。。增加了视频和音频上传的功能，删除了大量不好用的东西。。
-几乎全部重写了
+几乎重写了
 
 
 ###如何开始
@@ -58,7 +58,6 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 
 ##add file 添加文件
 	[uploader addFile:qiniu_file];
-    [uploader startUpload];
     
 ##add files 添加文件们
    	
@@ -77,6 +76,8 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
     [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
         NSLog(@"index:%ld key:%@",(long)index,key);
     }];
+
+    这个 key 就是文件在七牛的唯一标识，七牛的 CDN 地址 + key 就可以访问该文件了
 ## 上传一个文件失败时
     
     [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
@@ -95,8 +96,11 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
     }];
 
 ## 开始上传
-	
+
+上面乱七八糟的设置完了后，就调用这个开始上传
+
     [uploader startUpload];
+
 
 ## 取消全部上传任务
 	
