@@ -58,7 +58,6 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 
 ##add file 添加文件
 	[uploader addFile:qiniu_file];
-    [uploader setDelegate:self];
     [uploader startUpload];
     
 ##add files 添加文件们
