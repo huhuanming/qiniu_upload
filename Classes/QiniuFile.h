@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface QiniuFile : NSObject
 
 
-/**
- *  binary data of upload file.
- */
-@property (copy, nonatomic) NSData *fileData;
+
+
+@property ALAsset *asset;
 
 
 /**
@@ -28,11 +28,28 @@
  */
 @property (copy, nonatomic) NSString *mimeType;
 
+@property (copy, nonatomic) NSData *rawData;
+
+
 /**
- *  initialize instance with binary data, and key name for it.
+ *  (only support image)initialize instance with binary data, and key name for it.
+ *  @param theAsset the alasset for ios native resource
+ */
+- (id)initWithALAsset:(ALAsset *)theAsset;
+
+/**
+ *  (only support image)initialize instance with binary data, and key name for it.
  *  @param theData binary data
  */
 - (id)initWithFileData:(NSData *)theData;
+
+
+///**
+// *  initialize instance with binary data, and key name for it.
+// *  @param theData binary data
+// *
+// */
+//- (id)initWithFileData:(NSData *)theData;
 
 /**
  *  initialize instance with binary data.
@@ -40,6 +57,7 @@
  *  @param key name of this binary data
  */
 - (id)initWithFileData:(NSData *)theData withKey:(NSString*)theKey;
+
 
 
 @end

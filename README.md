@@ -5,7 +5,8 @@ qiniu_upload 是一款支持七牛云存储的ios/mac sdk。它基于AFNetworkin
 
 qiniu_upload 除了文件上传等基本功能完，还实现了多文件队列上传。
 
-后期还有官方api中说的url回调特性，也会加入其中（挖坑中..）
+UP 主开始填坑了。。增加了视频和音频上传的功能，删除了大量不好用的东西。。
+几乎全部重写了
 
 
 ###如何开始
@@ -27,59 +28,91 @@ qiniu_upload 除了文件上传等基本功能完，还实现了多文件队列�
 
 首先要初始化一个QiniuToken。scope, secretKey, accessKey注册七牛后官方都会给出
 
-	QiniuToken *qToken = [[QiniuToken alloc] initWithScope:scope SecretKey:secretKey Accesskey:accessKey];
+	[QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
+
+这样初始化，一个 Token 的默认有效生命周期是5分钟，如果你想自定义生命周期的话，可以这样初始化
+
+    [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"TimeToLive:60]
+
+QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 
 ###QiniuFile
-初始化要上传的七牛文件，图片，音频，都可以。
+初始化要上传的七牛文件，图片，音频，都可以。以图片为例
 
-	QiniuFile *file = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(imageView.image, 1.0f)];
+	QiniuFile *file = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(your_image, 1.0f)];
+
+
+或者一段音频
+    
+    NSString *path = [NSString stringWithFormat:@"%@/%@",[NSBundle mainBundle].resourcePath,@"your_mp3"];
+    QiniuFile *file = [[QiniuFile alloc] initWithFileData:[NSData dataWithContentsOfFile:path]];
+
+在或者你希望使用 AlAsset, 暂时 0.2 版 QiniuUpload 仅支持图片使用 AlAsset
+
+    QiniuFile *file = [[QiniuFile alloc] initWithALAsset:your_image_alasset];
 
 
 ###QiniuUploader
 
-##单文件上传
-	QiniuUploader *uploader = [[QiniuUploader alloc] initWithToken:qToken];
-	[uploader addFile:file];
+    QiniuUploader 移除了对 Delegate 的支持，全部改为了 Block
+
+##add file 添加文件
+	[uploader addFile:qiniu_file];
     [uploader setDelegate:self];
     [uploader startUpload];
     
-##多文件上传
+##add files 添加文件们
    	
-   	[uploader addFile:file];
-    [uploader addFile:file];
-    [uploader addFile:file];
-    [uploader setDelegate:self];
-    [uploader startUpload];
- 
+   	[uploader addFile:qiniu_file];
+    [uploader addFile:qiniu_file];
+    [uploader addFile:qiniu_file];
+
 当然，你也可以这样写
    	
-   	[uploader addFiles:theFiles];
-    [uploader setDelegate:self];
-    [uploader startUpload];
+   	[uploader addFiles:the_qiniu_files];
+
+这里的 QinniuFile 可以部分是图片，部分是视频、音频，不会对上传有任何影响。
     
-####QiniuUploaderDelegate
+## 上传一个文件成功时
 
-每当一个文件上传时的时候会调用这三个函数。index是当前上传的文件在队列中的序号
+    [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
+        NSLog(@"index:%ld key:%@",(long)index,key);
+    }];
+## 上传一个文件失败时
+    
+    [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
+        NSLog(@"%@",error);
+    }];
+## 当前上传文件的进度
 
-	- (void)uploadOneFileSucceeded:(AFHTTPRequestOperation *)operation Index:(NSInteger)index ret:(NSDictionary *)ret;
+    [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
+        NSLog(@"index:%ld percent:%lf",(long)index,percent);
+    }];
+## 全部上传完成
+    
+
+    [uploader setUploadAllFilesComplete:^(void){
+        NSLog(@"complete");
+    }];
+
+## 开始上传
 	
-	- (void)uploadOneFileFailed:(AFHTTPRequestOperation *)operation Index:(NSInteger)index error:(NSError *)error;
-	
-	- (void)uploadOneFileProgress:(NSInteger)index UploadPercent:(double)percent;
-	
-当所有文件上传完毕后调用下面这个函数。这个函数被调用时，并不意味着所有文件都成功上传了，有可能某些文件并没有上传成功。
-	
-	- (void)uploadAllFilesComplete
-	
-####cancelAllUploadTask
+    [uploader startUpload];
+
+## 取消全部上传任务
 	
 当你希望取消掉所有上传任务时
 	
 	[uploader cancelAllUploadTask]
 	
+## 最后
 
+如果你有希望加入的特性，可以在 issue 在留言。
+最后无耻的求个star...
 
 #####更新记录
+    版本 : 1.0
+    更新内容: 几乎全部重写
     版本 : 0.1.1
     更新内容: 修正了 scope 写死的错误
 	版本 : 0.1

@@ -14,16 +14,19 @@
 
 - (id)init
 {
-    return [self initWithToken:nil];
+    return [self initWithToken];
 }
 
-- (id)initWithToken:(QiniuToken *)theToken
+- (id)initWithToken
 {
     if (self = [super init]) {
         self.files = [[NSMutableArray alloc] init];
         self.operationQueue = [[NSOperationQueue alloc] init];
         [self.operationQueue setMaxConcurrentOperationCount:1];
-        self.token = theToken;
+        self.token = [QiniuToken sharedQiniuToken];
+        if (!self.token) {
+            [NSException raise:@"QiniuToken is nil" format:@"not resgister QiniuToken with Scope, AccessKey And SecretKey"];
+        }
     }
     return self;
 }
@@ -85,28 +88,36 @@
                                          //                                                                                               mimeType:mimeType
                                          //                                                                                                  error:nil];
                                          //                                                                    }else{
-                                         [formData appendPartWithFileData:theFile.fileData name:@"file" fileName:@"file" mimeType:theFile.mimeType];
+                                         [formData appendPartWithFileData:theFile.rawData name:@"file" fileName:@"file" mimeType:theFile.mimeType];
                                          //                                                                    }
                                          
                                      } error:nil];
     AFHTTPRequestOperation *operation = [operationManager HTTPRequestOperationWithRequest:request
                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    if ([self.delegate respondsToSelector:@selector(uploadOneFileSucceeded:Index:ret:)]) {
-                        [self.delegate uploadOneFileSucceeded:operation Index:index ret:responseObject];
+               
+                    if (self.uploadOneFileSucceeded) {
+                        self.uploadOneFileSucceeded(operation,index,responseObject[@"key"]);
                     }
-                    
                     if (index == self.files.count -1) {
-                        [self.delegate uploadAllFilesComplete];
+
+                        if (self.uploadAllFilesComplete) {
+                            self.uploadAllFilesComplete();
+                        }
                     }
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    if ([self.delegate respondsToSelector:@selector(uploadOneFileFailed:Index:error:)]) {
-                        [self.delegate uploadOneFileFailed:operation Index:index error:error];
+                
+                    if (self.uploadOneFileFailed) {
+                        self.uploadOneFileFailed(operation, index, [error copy]);
                     }
+                    
             }];
+     __block AFHTTPRequestOperation *progressOperation = operation;
+
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
         double percent = totalBytesWritten * 0.1 / totalBytesExpectedToWrite;
-        if ([self.delegate respondsToSelector:@selector(uploadOneFileProgress:UploadPercent:)]) {
-            [self.delegate uploadOneFileProgress:index UploadPercent:percent];
+
+        if (self.uploadOneFileProgress) {
+            self.uploadOneFileProgress(progressOperation, index, percent);
         }
     }];
 

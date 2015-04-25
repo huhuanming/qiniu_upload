@@ -9,11 +9,15 @@
 #import "DemoViewController.h"
 #import "QiniuUploader.h"
 
-#define scope @"yourScope"
-#define accessKey @"yourAccessKey"
-#define secretKey @"yourSecretKey"
 
-@interface DemoViewController ()<QiniuUploaderDelegate>
+const static NSString *QiniuScope =  @"jichedang";
+const static NSString *QiniuAccessKey  =  @"_Na9jCMtIIj1obn1ULmucVh0G-vgW8bookGw1JMI";
+const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8HUIW";
+
+
+@interface DemoViewController (){
+    UIImageView *imageView;
+}
 
 @end
 
@@ -30,50 +34,77 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 40, 260, 200)];
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 40, 260, 200)];
     [imageView setImage:[UIImage imageNamed:@"test.jpg"]];
     [self.view addSubview:imageView];
     
-    //give token
-    QiniuToken *token = [[QiniuToken alloc] initWithScope:scope SecretKey:secretKey Accesskey:accessKey];
-    
-    //give file
+   
+    //register qiniu
+    [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
+    // upload images
+    [self uploadImageFiles];
+    // upload audios
+    [self uploadAudio];
+}
+
+- (void)uploadImageFiles
+{
+    //add file
     QiniuFile *file = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(imageView.image, 1.0f)];
     
     //startUpload
-    QiniuUploader *uploader = [[QiniuUploader alloc] initWithToken:token];
+    QiniuUploader *uploader = [[QiniuUploader alloc] init];
     [uploader addFile:file];
     [uploader addFile:file];
     [uploader addFile:file];
-    [uploader setDelegate:self];
+    
+    [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
+        NSLog(@"index:%ld key:%@",(long)index,key);
+    }];
+    
+    [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
+        NSLog(@"index:%ld percent:%lf",(long)index,percent);
+        
+    }];
+    [uploader setUploadAllFilesComplete:^(void){
+        NSLog(@"complete");
+    }];
+    [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
+        NSLog(@"%@",error);
+    }];
     [uploader startUpload];
 }
 
-- (void)uploadOneFileSucceeded:(AFHTTPRequestOperation *)operation Index:(NSInteger)index ret:(NSDictionary *)ret
+- (void)uploadAudio
 {
-    NSLog(@"index:%ld ret:%@",(long)index,ret);
-}
-
-- (void)uploadAllFilesComplete
-{
-    NSLog(@"all complete");
-}
-- (void)uploadOneFileFailed:(AFHTTPRequestOperation *)operation Index:(NSInteger)index error:(NSError *)error
-{
-    NSLog(@"index:%ld responseObject:%@",(long)index,operation.responseObject);
-
-}
-
-- (void)uploadOneFileProgress:(NSInteger)index UploadPercent:(double)percent
-{
-    NSLog(@"index:%ld percent:%lf",(long)index,percent);
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+    //add file
+    NSString *path = [NSString stringWithFormat:@"%@/%@",[NSBundle mainBundle].resourcePath,@"ふつうのdisco.mp3"];
+    QiniuFile *file = [[QiniuFile alloc] initWithFileData:[NSData dataWithContentsOfFile:path]];
+    
+    //startUpload
+    QiniuUploader *uploader = [[QiniuUploader alloc] init];
+    [uploader addFile:file];
+    [uploader addFile:file];
+    [uploader addFile:file];
+    
+    [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
+        NSLog(@"index:%ld key:%@",(long)index,key);
+    }];
+    
+    [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
+        NSLog(@"index:%ld percent:%lf",(long)index,percent);
+        
+    }];
+    [uploader setUploadAllFilesComplete:^(void){
+        NSLog(@"complete");
+    }];
+    [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
+        NSLog(@"%@",error);
+    }];
+    [uploader startUpload];
 }
 
 @end

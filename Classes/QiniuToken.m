@@ -17,33 +17,54 @@
 @synthesize scope;
 @synthesize accessKey;
 @synthesize secretKey;
+@synthesize liveTime;
 
-- (id)initWithScope:(NSString *)theScope SecretKey:(NSString*)theSecretKey Accesskey:(NSString*)theAccessKey{
-    if (self = [super init]) {
-            self.scope = theScope;
-            self.secretKey = theSecretKey;
-            self.accessKey = theAccessKey;
-        }
+const static NSInteger defaultLiveTime  =  300;
+static QiniuToken *qiniuToken = nil;
+
+
++ (id)registerWithScope:(NSString *)theScope SecretKey:(NSString*)theSecretKey Accesskey:(NSString*)theAccessKey{
+    return [self registerWithScope:theScope SecretKey:theSecretKey Accesskey:theAccessKey TimeToLive:defaultLiveTime];
+}
+
++ (id)registerWithScope:(NSString *)theScope SecretKey:(NSString*)theSecretKey Accesskey:(NSString*)theAccessKey TimeToLive:(NSInteger)theliveTime
+{
+    
+    static dispatch_once_t predicate;
+    
+    dispatch_once(&predicate, ^{
+        qiniuToken = [[QiniuToken alloc] init];
+        qiniuToken.scope = theScope;
+        qiniuToken.secretKey = theSecretKey;
+        qiniuToken.accessKey = theAccessKey;
+        qiniuToken.liveTime = theliveTime;
+    });
+    
     return self;
+}
+
++ (QiniuToken *)sharedQiniuToken;
+{
+    return qiniuToken;
 }
 
 - (NSString *)uploadToken
 {
     NSMutableDictionary *authInfo = [[NSMutableDictionary alloc]init];
     [authInfo setObject:scope forKey:@"scope"];
-    [authInfo setObject:[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]+300] forKey:@"deadline" ];
+    [authInfo setObject:[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]+self.liveTime] forKey:@"deadline" ];
     //    [authInfo setObject:@"" forKey:@"callbackUrl"];
     //    [authInfo setObject:@"" forKey:@"callbackBodyType"];
     //    [authInfo setObject:@"" forKey:@"customer"];
     //    [authInfo setObject:@"" forKey:@"escape"];
     //    [authInfo setObject:@"" forKey:@"asyncOps"];
     //    [authInfo setObject:@"" forKey:@"returnBody"];
+    [authInfo setObject:[NSNumber numberWithInt:1] forKey:@"detectMime"];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:authInfo
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:nil];
     NSString *authInfoEncoded = [self urlSafeBase64Encode:jsonData];
     NSString *authDigestEncoded = [self hmac_sha1:secretKey text:authInfoEncoded];
-    
     return [NSString stringWithFormat:@"%@:%@:%@",accessKey,authDigestEncoded,authInfoEncoded];
 }
 

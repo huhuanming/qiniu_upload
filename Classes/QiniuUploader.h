@@ -9,24 +9,26 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 #import "QiniuToken.h"
-#import "QiniuUploaderDelegate.h"
 #import "QiniuFile.h"
+
+
+typedef void (^UploadOneFileSucceededBlock)(AFHTTPRequestOperation *operation, NSInteger index, NSString *key);
+typedef void (^UploadOneFileFailedBlock)(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error);
+typedef void (^UploadOneFileProgressBlock)(AFHTTPRequestOperation *operation, NSInteger index, double percent);
+typedef void (^UploadAllFilesCompleteBlock)(void);
 
 @interface QiniuUploader : NSObject
 
+
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
-@property (assign, nonatomic) id<QiniuUploaderDelegate> delegate;
 @property (retain, nonatomic) QiniuToken *token;
 @property (retain, nonatomic) NSMutableArray *files;
 
+@property (nonatomic, copy) UploadOneFileSucceededBlock uploadOneFileSucceeded;
+@property (nonatomic, copy) UploadOneFileFailedBlock uploadOneFileFailed;
+@property (nonatomic, copy) UploadOneFileProgressBlock uploadOneFileProgress;
+@property (nonatomic, copy) UploadAllFilesCompleteBlock uploadAllFilesComplete;
 
-
-/**
- *  Init QiniuUploader with given QiniuToken
- *  @param theToken QiniuToken
- */
-
-- (id)initWithToken:(QiniuToken *)theToken;
 
 /**
  *  add QiniuFile to QiniuUploader
