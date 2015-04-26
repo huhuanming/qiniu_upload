@@ -49,9 +49,9 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 
 先做你可以放心大胆的使用ALAsset URL了，不仅仅支持图片，什么都可以哦
 
-QiniuFile *file = [[QiniuFile alloc] initWithAssetURL:your_alasset_url]];
+    QiniuFile *file = [[QiniuFile alloc] initWithAssetURL:your_alasset_url]];
 
-为什么神奇，看看新增的一个 processAsset 的 Block，你就知道了
+数据处理看一看下面那个叫 processAsset 的 Block，你就知道了。
 
 ###QiniuUploader
 
@@ -122,12 +122,14 @@ QiniuFile *file = [[QiniuFile alloc] initWithAssetURL:your_alasset_url]];
 
 ## 最后
 
+如果还有不清楚的地方, 可以看看 QiniuUploadDemo，里面什么都有。。。
+
 如果你有希望加入的特性，可以在 issue 在留言。
 最后无耻的求个star...
 
 #####更新记录
     版本 : 1.2
-    更新内容: 非常非常省内存了，加强对 ALAsset URL 的支持
+    更新内容: 非常非常省内存了，顺带增强了对 ALAsset URL 的支持
     版本 : 1.0.1
     更新内容: 几乎全部重写
     版本 : 0.1.1
