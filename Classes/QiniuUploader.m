@@ -128,9 +128,10 @@
             }
             if (!sourceData) {
                  self.uploadOneFileFailed(nil, index, [[[NSError alloc] initWithDomain:@"no found binary data in this image" code:1404 userInfo:nil] copy]);
+            }else{
+                AFHTTPRequestOperation *theOperation = [self QiniuOperation:index sourceData:sourceData];
+                [self.operationQueue addOperation:theOperation];
             }
-            AFHTTPRequestOperation *theOperation = [self QiniuOperation:index sourceData:sourceData];
-            [self.operationQueue addOperation:theOperation];
         } failureBlock:^(NSError *error) {
             NSLog(@"Error: Cannot load asset from photo stream - %@", [error localizedDescription]);
         }];
