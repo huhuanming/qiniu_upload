@@ -14,7 +14,7 @@
 
 
 
-@property ALAsset *asset;
+@property NSURL *assetURL;
 
 
 /**
@@ -35,7 +35,7 @@
  *  (only support image)initialize instance with binary data, and key name for it.
  *  @param theAsset the alasset for ios native resource
  */
-- (id)initWithALAsset:(ALAsset *)theAsset;
+- (id)initWithAssetURL:(NSURL *)assetURL;
 
 /**
  *  (only support image)initialize instance with binary data, and key name for it.

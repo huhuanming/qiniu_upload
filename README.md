@@ -5,8 +5,8 @@ qiniu_upload 是一款支持七牛云存储的ios/mac sdk。它基于AFNetworkin
 
 qiniu_upload 除了文件上传等基本功能完，还实现了多文件队列上传。
 
-UP 主开始填坑了。。增加了视频和音频上传的功能，删除了大量不好用的东西。。
-几乎重写了
+UP 主继续填坑了。。
+重写了队列上传方式，更省内存了。
 
 
 ###如何开始
@@ -24,7 +24,7 @@ UP 主开始填坑了。。增加了视频和音频上传的功能，删除了�
 
 ####开始编码
 
-###UploadToken
+###QiniuToken
 
 首先要初始化一个QiniuToken。scope, secretKey, accessKey注册七牛后官方都会给出
 
@@ -47,10 +47,11 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
     NSString *path = [NSString stringWithFormat:@"%@/%@",[NSBundle mainBundle].resourcePath,@"your_mp3"];
     QiniuFile *file = [[QiniuFile alloc] initWithFileData:[NSData dataWithContentsOfFile:path]];
 
-在或者你希望使用 AlAsset, 暂时 0.2 版 QiniuUpload 仅支持图片使用 AlAsset
+先做你可以放心大胆的使用ALAsset URL了，不仅仅支持图片，什么都可以哦
 
-    QiniuFile *file = [[QiniuFile alloc] initWithALAsset:your_image_alasset];
+QiniuFile *file = [[QiniuFile alloc] initWithAssetURL:your_alasset_url]];
 
+为什么神奇，看看新增的一个 processAsset 的 Block，你就知道了
 
 ###QiniuUploader
 
@@ -65,7 +66,7 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
     [uploader addFile:qiniu_file];
     [uploader addFile:qiniu_file];
 
-当然，你也可以这样写
+当然，你也可以这样写, the_qiniu_files 是一个 NSArray
    	
    	[uploader addFiles:the_qiniu_files];
 
@@ -83,6 +84,8 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
     [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
     }];
+
+    当 error code 是 1404 时，表示当前上传的文件找不到了，这个错误码是本地码。
 ## 当前上传文件的进度
 
     [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
@@ -107,13 +110,24 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 当你希望取消掉所有上传任务时
 	
 	[uploader cancelAllUploadTask]
-	
+
+##processAsset
+    当上传处理带 ALAsset URL 的 Qiniu File 时，你可能希望能压缩下图片啊，处理下视频啊。
+    之类之类的，都可以在这个 Block 中实现。
+    
+	[uploader setProcessAsset:^NSData*(ALAsset *asset){
+        UIImage *tempImage = [UIImage imageWithCGImage:asset.defaultRepresentation.fullResolutionImage scale:1.0 orientation:(UIImageOrientation)asset.defaultRepresentation.orientation];
+        return UIImageJPEGRepresentation(tempImage, 0.1);
+    }];
+
 ## 最后
 
 如果你有希望加入的特性，可以在 issue 在留言。
 最后无耻的求个star...
 
 #####更新记录
+    版本 : 1.2
+    更新内容: 非常非常省内存了，加强对 ALAsset URL 的支持
     版本 : 1.0.1
     更新内容: 几乎全部重写
     版本 : 0.1.1

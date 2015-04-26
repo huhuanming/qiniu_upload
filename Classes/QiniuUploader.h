@@ -17,6 +17,9 @@ typedef void (^UploadOneFileFailedBlock)(AFHTTPRequestOperation *operation, NSIn
 typedef void (^UploadOneFileProgressBlock)(AFHTTPRequestOperation *operation, NSInteger index, double percent);
 typedef void (^UploadAllFilesCompleteBlock)(void);
 
+
+typedef NSData* (^processAssetBlock)(ALAsset *asset);
+
 @interface QiniuUploader : NSObject
 
 
@@ -28,6 +31,7 @@ typedef void (^UploadAllFilesCompleteBlock)(void);
 @property (nonatomic, copy) UploadOneFileFailedBlock uploadOneFileFailed;
 @property (nonatomic, copy) UploadOneFileProgressBlock uploadOneFileProgress;
 @property (nonatomic, copy) UploadAllFilesCompleteBlock uploadAllFilesComplete;
+@property (nonatomic, copy) processAssetBlock processAsset;
 
 
 /**

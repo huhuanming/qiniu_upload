@@ -46,15 +46,7 @@
     if (!self.files) {
         return NO;
     }
-    NSOperation *operation = [[NSOperation alloc] init];
-    [self.operationQueue addOperation:operation];
-    
-    for (NSInteger i = 0; i < self.files.count; i++) {
-        AFHTTPRequestOperation *theOperation = [self QiniuOperation:i];
-        [theOperation addDependency:operation];
-        [self.operationQueue addOperation:theOperation];
-        operation = theOperation;
-    }
+    [self getQiniuFileSourceDataAndCreateOperation:0];
     return YES;
 }
 
@@ -67,7 +59,7 @@
     return YES;
 }
 
-- (AFHTTPRequestOperation*)QiniuOperation:(NSInteger)index
+- (AFHTTPRequestOperation*)QiniuOperation:(NSInteger)index sourceData:(NSData*)sourceData
 {
     QiniuFile *theFile = self.files[index];
      AFHTTPRequestOperationManager *operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://up.qiniu.com"]];
@@ -81,22 +73,16 @@
                                                           URLString:kQiniuUpUploadUrl
                                                          parameters:parameters
                                           constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                                         //                                                                    if (mimeType) {
-                                         //                                                                        [formData appendPartWithFileURL:fileURL
-                                         //                                                                                                   name:@"file"
-                                         //                                                                                               fileName:filePath
-                                         //                                                                                               mimeType:mimeType
-                                         //                                                                                                  error:nil];
-                                         //                                                                    }else{
-                                         [formData appendPartWithFileData:theFile.rawData name:@"file" fileName:@"file" mimeType:theFile.mimeType];
-                                         //                                                                    }
-                                         
+                                         [formData appendPartWithFileData:sourceData name:@"file" fileName:@"file" mimeType:theFile.mimeType];
                                      } error:nil];
     AFHTTPRequestOperation *operation = [operationManager HTTPRequestOperationWithRequest:request
                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                
                     if (self.uploadOneFileSucceeded) {
                         self.uploadOneFileSucceeded(operation,index,responseObject[@"key"]);
+                        if (index != self.files.count -1) {
+                            [self getQiniuFileSourceDataAndCreateOperation:index+1];
+                        }
                     }
                     if (index == self.files.count -1) {
 
@@ -114,7 +100,7 @@
      __block AFHTTPRequestOperation *progressOperation = operation;
 
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-        double percent = totalBytesWritten * 0.1 / totalBytesExpectedToWrite;
+        double percent = totalBytesWritten * 1.0 / totalBytesExpectedToWrite;
 
         if (self.uploadOneFileProgress) {
             self.uploadOneFileProgress(progressOperation, index, percent);
@@ -122,6 +108,34 @@
     }];
 
     return operation;
+}
+
+- (void)getQiniuFileSourceDataAndCreateOperation:(NSInteger)index
+{
+    QiniuFile *qiniuFile = self.files[index];
+    if (qiniuFile.rawData) {
+        AFHTTPRequestOperation *theOperation = [self QiniuOperation:index sourceData:qiniuFile.rawData];
+        [self.operationQueue addOperation:theOperation];
+    }else{
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library assetForURL:qiniuFile.assetURL resultBlock:^(ALAsset *asset) {
+            NSData *sourceData = nil;
+            if (self.processAsset) {
+                sourceData = self.processAsset(asset);
+            }else{
+                UIImage *tempImage = [UIImage imageWithCGImage:asset.defaultRepresentation.fullResolutionImage scale:1.0 orientation:(UIImageOrientation)asset.defaultRepresentation.orientation];
+                sourceData = UIImageJPEGRepresentation(tempImage, 1.0);
+            }
+            if (!sourceData) {
+                 self.uploadOneFileFailed(nil, index, [[[NSError alloc] initWithDomain:@"no found binary data in this image" code:1404 userInfo:nil] copy]);
+            }
+            AFHTTPRequestOperation *theOperation = [self QiniuOperation:index sourceData:sourceData];
+            [self.operationQueue addOperation:theOperation];
+        } failureBlock:^(NSError *error) {
+            NSLog(@"Error: Cannot load asset from photo stream - %@", [error localizedDescription]);
+        }];
+        
+    }
 }
 
 @end

@@ -12,11 +12,11 @@
 
 
 
-- (id)initWithALAsset:(ALAsset *)theAsset
+- (id)initWithAssetURL:(NSURL *)assetURL
 {
     if (self = [super init]) {
         self.mimeType = @"image/jpeg";
-        self.asset = theAsset;
+        self.assetURL = assetURL;
     }
     return self;
 }
@@ -34,18 +34,6 @@
         self.mimeType = @"image/jpeg";
     }
     return self;
-}
-
-- (NSData *)rawData
-{
-    if (_rawData) {
-        return _rawData;
-    }
-    ALAssetRepresentation *representation = [self.asset defaultRepresentation];
-    Byte *buffer = (Byte*)malloc(representation.size);
-    NSUInteger buffered = [representation getBytes:buffer fromOffset:0.0 length:representation.size error:nil];
-    NSData *sourceData = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
-    return sourceData;
 }
 
 @end

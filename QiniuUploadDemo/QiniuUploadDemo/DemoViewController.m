@@ -15,7 +15,7 @@ const static NSString *QiniuAccessKey  =  @"_Na9jCMtIIj1obn1ULmucVh0G-vgW8bookGw
 const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8HUIW";
 
 
-@interface DemoViewController (){
+@interface DemoViewController ()<UIImagePickerControllerDelegate>{
     UIImageView *imageView;
 }
 
@@ -27,7 +27,7 @@ const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -41,13 +41,41 @@ const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8
     [imageView setImage:[UIImage imageNamed:@"test.jpg"]];
     [self.view addSubview:imageView];
     
+    
+    UIButton *imageSelectedButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [imageSelectedButton setFrame:CGRectMake(60,260, 100, 50)];
+    [imageSelectedButton setTitle:@"select image" forState:UIControlStateNormal];
+    [self.view addSubview:imageSelectedButton];
+    [imageSelectedButton addTarget:self action:@selector(imageSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *imageUploaderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [imageUploaderButton setFrame:CGRectMake(20,300, 100, 50)];
+    [imageUploaderButton setTitle:@"upload image" forState:UIControlStateNormal];
+    [self.view addSubview:imageUploaderButton];
    
+    
+    UIButton *audioUploaderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [audioUploaderButton setFrame:CGRectMake(140,300, 100, 50)];
+    [audioUploaderButton setTitle:@"upload audio" forState:UIControlStateNormal];
+    [self.view addSubview:audioUploaderButton];
     //register qiniu
     [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
-    // upload images
-    [self uploadImageFiles];
-    // upload audios
-    [self uploadAudio];
+    
+//    // upload images
+//    [self uploadImageFiles];
+//    // upload audios
+//    [self uploadAudio];
+    
+    
+}
+
+- (void)imageSelected:(id)sender
+{
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
+    pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    pickerController.delegate = self;
+    pickerController.allowsEditing = YES; //是否可编辑
+    [self presentModalViewController:pickerController animated:YES];
 }
 
 - (void)uploadImageFiles
@@ -105,6 +133,44 @@ const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8
         NSLog(@"%@",error);
     }];
     [uploader startUpload];
+}
+
+// UIImagePickerControllerdelegate
+
+- (void)imagePickerController:(UIImagePickerController *)pickerController didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [pickerController dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"%@",info);
+    
+    [imageView setImage:(UIImage*)info[@"UIImagePickerControllerOriginalImage"]];
+    
+    QiniuFile *file = [[QiniuFile alloc] initWithAssetURL:info[@"UIImagePickerControllerReferenceURL"]];
+    
+    QiniuUploader *uploader = [[QiniuUploader alloc] init];
+    [uploader addFile:file];
+    [uploader addFile:file];
+    [uploader addFile:file];
+    
+    [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
+        NSLog(@"index:%ld key:%@",(long)index,key);
+    }];
+    
+    [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
+        NSLog(@"index:%ld percent:%lf",(long)index,percent);
+        
+    }];
+    [uploader setUploadAllFilesComplete:^(void){
+        NSLog(@"complete");
+    }];
+    [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
+        NSLog(@"%@",error);
+    }];
+    [uploader setProcessAsset:^NSData*(ALAsset *asset){
+        UIImage *tempImage = [UIImage imageWithCGImage:asset.defaultRepresentation.fullResolutionImage scale:1.0 orientation:(UIImageOrientation)asset.defaultRepresentation.orientation];
+        return UIImageJPEGRepresentation(tempImage, 0.1);
+    }];
+    [uploader startUpload];
+
 }
 
 @end

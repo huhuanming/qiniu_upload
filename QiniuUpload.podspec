@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "QiniuUpload"
-  s.version      = "1.0.1"
+  s.version      = "1.2"
   s.summary      = "支持批量上传的七牛上传sdk，音频、视频、图片都是支持滴"
 
   s.description  = <<-DESC
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
   
-  s.authors = { "hu" => "workboring@gmail.com","ZhengHongchuan" => "411385771@qq.com","JohnsonHwuang"=>"huangxiangsh@gmail.com"}
+  s.authors = { "huhuanming" => "workboring@gmail.com"}
   # Or just: s.author    = "hu"
   # s.authors            = { "hu" => "workboring@gmail.com" }
   # s.social_media_url   = "http://twitter.com/hu"
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/huhuanming/qiniu_upload.git", :tag => "1.0.1" }
+  s.source       = { :git => "https://github.com/huhuanming/qiniu_upload.git", :tag => "1.2" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
