@@ -36,6 +36,10 @@ UP 主继续填坑了。。
 
 QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 
+当然，如果你希望从自家服务器动态获取 Token，你也可以在 QiniuUploader 里面这样写
+
+    [uploader startUploadWithAccessToken:@"your_access_token"];
+
 ###QiniuFile
 初始化要上传的七牛文件，图片，音频，都可以。以图片为例
 
@@ -128,6 +132,8 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 最后无耻的求个star...
 
 #####更新记录
+    版本 : 1.3
+    更新内容: 新增从自家获取七牛的Token
     版本 : 1.2.1
     更新内容: 修复当文件不存在时，引起的崩溃
     版本 : 1.2

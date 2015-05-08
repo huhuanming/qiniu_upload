@@ -10,7 +10,9 @@
 
 #define kQiniuUpUploadUrl @"http://up.qiniu.com"
 
-@implementation QiniuUploader
+@implementation QiniuUploader{
+    NSString *accessToken;
+}
 
 - (id)init
 {
@@ -23,10 +25,6 @@
         self.files = [[NSMutableArray alloc] init];
         self.operationQueue = [[NSOperationQueue alloc] init];
         [self.operationQueue setMaxConcurrentOperationCount:1];
-        self.token = [QiniuToken sharedQiniuToken];
-        if (!self.token) {
-            [NSException raise:@"QiniuToken is nil" format:@"not resgister QiniuToken with Scope, AccessKey And SecretKey"];
-        }
     }
     return self;
 }
@@ -39,6 +37,12 @@
 - (void)addFiles:(NSArray *)theFiles
 {
     [self.files addObjectsFromArray:theFiles];
+}
+
+- (Boolean)startUploadWithAccessToken:(NSString *)theAccessToken
+{
+    accessToken = theAccessToken;
+    return [self startUpload];
 }
 
 - (Boolean)startUpload
@@ -67,7 +71,11 @@
     if (theFile.key){
         parameters[@"key"] = theFile.key;
     }
-    parameters[@"token"] = [self.token uploadToken];
+    
+    if (!accessToken && ![QiniuToken sharedQiniuToken]) {
+        [NSException raise:@"QiniuToken is nil" format:@"not resgister QiniuToken with Scope, AccessKey And SecretKey"];
+    }
+    parameters[@"token"] = accessToken?:[[QiniuToken sharedQiniuToken] uploadToken];
     NSMutableURLRequest *request = [operationManager.requestSerializer
                                      multipartFormRequestWithMethod:@"POST"
                                                           URLString:kQiniuUpUploadUrl

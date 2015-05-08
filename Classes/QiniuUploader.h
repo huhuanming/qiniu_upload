@@ -24,7 +24,6 @@ typedef NSData* (^processAssetBlock)(ALAsset *asset);
 
 
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
-@property (retain, nonatomic) QiniuToken *token;
 @property (retain, nonatomic) NSMutableArray *files;
 
 @property (nonatomic, copy) UploadOneFileSucceededBlock uploadOneFileSucceeded;
@@ -50,6 +49,14 @@ typedef NSData* (^processAssetBlock)(ALAsset *asset);
  *  @return Boolean if files were nil, it will return NO.
  */
 - (Boolean)startUpload;
+
+
+/**
+ *  start upload files to qiniu cloud storage.
+ *  @param AccessToken Qiniu AccessToken from your sever
+ *  @return Boolean if files were nil, it will return NO.
+ */
+- (Boolean)startUploadWithAccessToken:(NSString *)theAccessToken;
 
 /**
  *  cancel and clear All Upload Task

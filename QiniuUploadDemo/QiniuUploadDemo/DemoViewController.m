@@ -62,7 +62,7 @@ const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8
     [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
     
 //    // upload images
-//    [self uploadImageFiles];
+    [self uploadImageFiles];
 //    // upload audios
 //    [self uploadAudio];
     
@@ -151,13 +151,15 @@ const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8
     [uploader addFile:file];
     [uploader addFile:file];
     
+    NSMutableArray *metaArray = [[NSMutableArray alloc] init];
+    
     [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
         NSLog(@"index:%ld key:%@",(long)index,key);
     }];
     
     [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
         NSLog(@"index:%ld percent:%lf",(long)index,percent);
-        
+        NSLog(@"%@", metaArray[index]);
     }];
     [uploader setUploadAllFilesComplete:^(void){
         NSLog(@"complete");
@@ -165,7 +167,9 @@ const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8
     [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
     }];
+    
     [uploader setProcessAsset:^NSData*(ALAsset *asset){
+        [metaArray addObject:[asset valueForProperty:ALAssetPropertyDate]];
         UIImage *tempImage = [UIImage imageWithCGImage:asset.defaultRepresentation.fullResolutionImage scale:1.0 orientation:(UIImageOrientation)asset.defaultRepresentation.orientation];
         return UIImageJPEGRepresentation(tempImage, 0.1);
     }];
