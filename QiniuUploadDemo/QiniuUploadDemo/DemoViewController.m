@@ -10,11 +10,6 @@
 #import "QiniuUploader.h"
 
 
-const static NSString *QiniuScope =  @"jichedang";
-const static NSString *QiniuAccessKey  =  @"_Na9jCMtIIj1obn1ULmucVh0G-vgW8bookGw1JMI";
-const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8HUIW";
-
-
 @interface DemoViewController ()<UIImagePickerControllerDelegate>{
     UIImageView *imageView;
 }
@@ -59,8 +54,9 @@ const static NSString *QiniuSecretKey  =  @"IOIgoQilr8CrSjFj7PCM5NYEO47T5iAyCX_8
     [audioUploaderButton setTitle:@"upload audio" forState:UIControlStateNormal];
     [self.view addSubview:audioUploaderButton];
     //register qiniu
-    [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
     
+    [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
+    NSLog(@"%@",[[QiniuToken sharedQiniuToken] uploadToken]);
 //    // upload images
     [self uploadImageFiles];
 //    // upload audios
