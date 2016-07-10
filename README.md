@@ -131,6 +131,11 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 如果你有希望加入的特性，可以在 issue 在留言。
 最后无耻的求个star...
 
+##### TODO
+   * 支持断点续传
+   * 移除 AFNetWorking
+   * 支持 swift
+
 #####更新记录
     版本 : 1.3
     更新内容: 新增从自家获取七牛的Token
