@@ -133,8 +133,10 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 
 ##### TODO
    * 支持断点续传
-   * 移除 AFNetWorking
-   * 支持 swift
+   * 支持版本更新在开发环境中提示
+   * Remove AFNetWorking support
+   * support swift
+   * support Android
 
 #####更新记录
     版本 : 1.3
