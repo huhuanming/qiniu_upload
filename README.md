@@ -6,6 +6,18 @@ qiniu_upload 是一款支持七牛云存储的ios/mac sdk。它基于AFNetworkin
 qiniu_upload 除了文件上传等基本功能完，还实现了多文件队列上传。
 
 UP 主继续填坑了。。
+
+
+##### TODO
+   * 支持断点续传
+   * 支持并发上传
+   * 支持版本更新在开发环境中提示
+   * Remove AFNetWorking support
+   * support swift
+   * support Android
+  
+大约一个月时间内完成
+
 重写了队列上传方式，更省内存了。
 
 
@@ -130,13 +142,6 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 
 如果你有希望加入的特性，可以在 issue 在留言。
 最后无耻的求个star...
-
-##### TODO
-   * 支持断点续传
-   * 支持版本更新在开发环境中提示
-   * Remove AFNetWorking support
-   * support swift
-   * support Android
 
 #####更新记录
     版本 : 1.3
