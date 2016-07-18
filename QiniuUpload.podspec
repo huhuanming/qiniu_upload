@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "QiniuUpload"
-  s.version      = "1.5"
+  s.version      = "1.5.1"
   s.summary      = "支持批量上传的七牛上传sdk，音频、视频、图片都是支持滴"
 
   s.description  = <<-DESC
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/huhuanming/qiniu_upload.git", :tag => "1.5" }
+  s.source       = { :git => "https://github.com/huhuanming/qiniu_upload.git", :tag => "1.5.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

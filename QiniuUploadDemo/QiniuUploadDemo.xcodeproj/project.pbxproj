@@ -251,6 +251,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = hu;
 				TargetAttributes = {
+					85E7EB22192665BA00F17453 = {
+						DevelopmentTeam = 5M34M6CU7U;
+					};
 					85E7EB3D192665BA00F17453 = {
 						TestTargetID = 85E7EB22192665BA00F17453;
 					};
@@ -458,10 +461,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QiniuUploadDemo/QiniuUploadDemo-Prefix.pch";
 				INFOPLIST_FILE = "QiniuUploadDemo/QiniuUploadDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hu.QiniuUpload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -472,10 +479,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QiniuUploadDemo/QiniuUploadDemo-Prefix.pch";
 				INFOPLIST_FILE = "QiniuUploadDemo/QiniuUploadDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hu.QiniuUpload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -530,7 +541,7 @@
 				85E7EB4E192665BA00F17453 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		85E7EB4F192665BA00F17453 /* Build configuration list for PBXNativeTarget "QiniuUploadDemo" */ = {
 			isa = XCConfigurationList;
@@ -539,7 +550,7 @@
 				85E7EB51192665BA00F17453 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		85E7EB52192665BA00F17453 /* Build configuration list for PBXNativeTarget "QiniuUploadDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -548,7 +559,7 @@
 				85E7EB54192665BA00F17453 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

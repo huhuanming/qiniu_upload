@@ -26,6 +26,9 @@
         self.operationQueue = [[NSOperationQueue alloc] init];
         [self.operationQueue setMaxConcurrentOperationCount:1];
     }
+    #ifdef DEBUG
+        [QiniuUploader checkVersion];
+    #endif
     return self;
 }
 
@@ -63,7 +66,7 @@
     return YES;
 }
 
-- (AFHTTPRequestOperation*)QiniuOperation:(NSInteger)index sourceData:(NSData*)sourceData
+- (AFHTTPRequestOperation *)QiniuOperation:(NSInteger)index sourceData:(NSData*)sourceData
 {
     QiniuFile *theFile = self.files[index];
      AFHTTPRequestOperationManager *operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://up.qiniu.com"]];
@@ -147,4 +150,29 @@
     }
 }
 
++ (NSString *)versionName {
+    return @"1.5.1";
+}
+
++ (NSInteger)version {
+    return 1;
+}
+
+
+#ifdef DEBUG
++ (void)checkVersion {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:@"https://raw.githubusercontent.com/huhuanming/qiniu_upload/master/Classes/version.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+        NSString *versionName = dic[@"versionName"];
+        NSNumber *version = dic[@"version"];
+        if (version.intValue > [self version]) {
+            NSLog(@"QiniuUpload 更新了，最新版本是 %@, 当前版本是 %@, 地址: https://github.com/huhuanming/qiniu_upload", versionName, [self versionName]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"QiniuUpload 版本检查失败，可能遇到网络问题");
+    }];
+}
 @end
+#endif
