@@ -9,12 +9,12 @@ UP 主继续填坑了。。
 
 
 ##### TODO
-   * 支持断点续传
-   * 支持并发上传
-   * 支持版本更新在开发环境中提示 
-   * Remove AFNetWorking support
-   * support swift
-   * support Android
+- [ ] 支持断点续传
+- [ ] 支持并发上传
+- [x] 支持版本更新在开发环境中提示 
+- [ ] Remove AFNetWorking support
+- [ ] support swift
+- [ ] support Android
   
 大约一个月时间内完成
 
