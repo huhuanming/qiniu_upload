@@ -1,5 +1,5 @@
 
-qiniu_upload 是一款支持七牛云存储的 ios/mac sdk。它基于 [AFNetworking 3.x](https://github.com/AFNetworking/AFNetworking) 版本和七牛官方API构建。
+qiniu_upload 是一款支持七牛云存储的 iOS/macOS sdk。它基于 [AFNetworking 3.x](https://github.com/AFNetworking/AFNetworking) 版本和七牛官方 Web API 构建。
 
 （ _(:3」∠)_上面的话太严肃了写得我好难受）
 
@@ -22,22 +22,21 @@ UP 主继续填坑了。。
 
 ###如何开始
 ---
-####从CocoaPods安装
+####从 CocoaPods 安装
 
 #####Podfile
-	platform :ios, '6.0'
 	pod "QiniuUpload"
 
 
 ####手动安装
 
-复制Classes目录下的类到工程项目中就行了，请确保您的项目已有AFNetworking 2.x。
+复制Classes目录下的类到工程项目中就行了，请确保您的项目已有 AFNetworking 3.x。
 
 ####开始编码
 
 ###QiniuToken
 
-首先要初始化一个QiniuToken。scope, secretKey, accessKey注册七牛后官方都会给出
+首先要初始化一个 QiniuToken。scope, secretKey, accessKey 注册七牛后官方都会给出
 
 	[QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
 
