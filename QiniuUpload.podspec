@@ -40,8 +40,6 @@ Pod::Spec.new do |s|
   #
 
   s.license      = "MIT"
-  # s.license      = {:type => "MIT", :file => "FILE_LICENSE" }
-
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -64,12 +62,8 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
-  s.platform     = :ios, "7.0"
-
-  #  When using multiple platforms
-  # s.ios.deployment_target = "5.0"
-  # s.osx.deployment_target = "10.7"
+  s.ios.deployment_target = '7.0'
+  s.osx.deployment_target = '10.9'
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
