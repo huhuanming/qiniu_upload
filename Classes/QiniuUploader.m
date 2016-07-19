@@ -66,10 +66,11 @@
     return YES;
 }
 
-- (AFHTTPRequestOperation *)QiniuOperation:(NSInteger)index sourceData:(NSData*)sourceData
+- (NSURLSessionUploadTask
+   *)QiniuOperation:(NSInteger)index sourceData:(NSData*)sourceData
 {
     QiniuFile *theFile = self.files[index];
-     AFHTTPRequestOperationManager *operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://up.qiniu.com"]];
+     AFHTTPSessionManager *operationManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://up.qiniu.com"]];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     if (theFile.key){
         parameters[@"key"] = theFile.key;
@@ -86,47 +87,38 @@
                                           constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                          [formData appendPartWithFileData:sourceData name:@"file" fileName:@"file" mimeType:theFile.mimeType];
                                      } error:nil];
-    AFHTTPRequestOperation *operation = [operationManager HTTPRequestOperationWithRequest:request
-                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-               
-                    if (self.uploadOneFileSucceeded) {
-                        self.uploadOneFileSucceeded(operation,index,responseObject[@"key"]);
-                        if (index != self.files.count -1) {
-                            [self getQiniuFileSourceDataAndCreateOperation:index+1];
-                        }
-                    }
-                    if (index == self.files.count -1) {
-
-                        if (self.uploadAllFilesComplete) {
-                            self.uploadAllFilesComplete();
-                        }
-                    }
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSURLSessionUploadTask *task = [operationManager uploadTaskWithRequest:request fromData:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        self.uploadOneFileProgress(operationManager, index, uploadProgress);
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            if (self.uploadOneFileFailed) {
+                self.uploadOneFileFailed(operationManager, index, [error copy]);
+            }
+        } else {
+            if (self.uploadOneFileSucceeded) {
+                self.uploadOneFileSucceeded(operationManager,index,responseObject[@"key"]);
+                if (index != self.files.count -1) {
+                    [self getQiniuFileSourceDataAndCreateOperation:index+1];
+                }
+            }
+            if (index == self.files.count -1) {
                 
-                    if (self.uploadOneFileFailed) {
-                        self.uploadOneFileFailed(operation, index, [error copy]);
-                    }
-                    
-            }];
-     __block AFHTTPRequestOperation *progressOperation = operation;
-
-    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-        double percent = totalBytesWritten * 1.0 / totalBytesExpectedToWrite;
-
-        if (self.uploadOneFileProgress) {
-            self.uploadOneFileProgress(progressOperation, index, percent);
+                if (self.uploadAllFilesComplete) {
+                    self.uploadAllFilesComplete();
+                }
+            }
         }
     }];
-
-    return operation;
+    
+    return task;
 }
 
 - (void)getQiniuFileSourceDataAndCreateOperation:(NSInteger)index
 {
     QiniuFile *qiniuFile = self.files[index];
     if (qiniuFile.rawData) {
-        AFHTTPRequestOperation *theOperation = [self QiniuOperation:index sourceData:qiniuFile.rawData];
-        [self.operationQueue addOperation:theOperation];
+        NSURLSessionUploadTask *task = [self QiniuOperation:index sourceData:qiniuFile.rawData];
+        [task resume];
     }else{
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         [library assetForURL:qiniuFile.assetURL resultBlock:^(ALAsset *asset) {
@@ -140,8 +132,8 @@
             if (!sourceData) {
                  self.uploadOneFileFailed(nil, index, [[[NSError alloc] initWithDomain:@"no found binary data in this image" code:1404 userInfo:nil] copy]);
             }else{
-                AFHTTPRequestOperation *theOperation = [self QiniuOperation:index sourceData:sourceData];
-                [self.operationQueue addOperation:theOperation];
+                NSURLSessionUploadTask *task = [self QiniuOperation:index sourceData:sourceData];
+                [task resume];
             }
         } failureBlock:^(NSError *error) {
             NSLog(@"Error: Cannot load asset from photo stream - %@", [error localizedDescription]);
@@ -161,18 +153,19 @@
 
 #ifdef DEBUG
 + (void)checkVersion {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:@"https://raw.githubusercontent.com/huhuanming/qiniu_upload/master/Classes/version.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"https://raw.githubusercontent.com/huhuanming/qiniu_upload/master/Classes/version.json" parameters: nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
         NSString *versionName = dic[@"versionName"];
         NSNumber *version = dic[@"version"];
         if (version.intValue > [self version]) {
             NSLog(@"QiniuUpload 更新了，最新版本是 %@, 当前版本是 %@, 地址: https://github.com/huhuanming/qiniu_upload", versionName, [self versionName]);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"QiniuUpload 版本检查失败，可能遇到网络问题");
     }];
 }
-@end
 #endif
+
+@end

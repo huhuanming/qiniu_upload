@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import "QiniuToken.h"
 #import "QiniuFile.h"
 
 
-typedef void (^UploadOneFileSucceededBlock)(AFHTTPRequestOperation *operation, NSInteger index, NSString *key);
-typedef void (^UploadOneFileFailedBlock)(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error);
-typedef void (^UploadOneFileProgressBlock)(AFHTTPRequestOperation *operation, NSInteger index, double percent);
+typedef void (^UploadOneFileSucceededBlock)(AFHTTPSessionManager *manager, NSInteger index, NSString *key);
+typedef void (^UploadOneFileFailedBlock)(AFHTTPSessionManager *manager, NSInteger index, NSDictionary *error);
+typedef void (^UploadOneFileProgressBlock)(AFHTTPSessionManager *manager, NSInteger index, NSProgress *process);
 typedef void (^UploadAllFilesCompleteBlock)(void);
 
 

@@ -12,6 +12,7 @@ UP 主继续填坑了。。
 - [ ] 支持断点续传
 - [ ] 支持并发上传
 - [x] 支持版本更新在开发环境中提示 
+- [x] Remove all warnings 
 - [ ] Remove AFNetWorking support
 - [ ] support swift
 - [ ] support Android
@@ -143,7 +144,10 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 
 #####更新记录
     版本 : 1.5.1
-    更新内容: 修复了一片 bug，增加了在开发环境下的版本更新提示
+    更新内容: 修复了一片 bug,
+             增加了在开发环境下的版本更新提示,
+             AFNetworking 换到了 3.0 以上版本,
+             移除了所有 warnings
     版本 : 1.3
     更新内容: 新增从自家获取七牛的Token
     版本 : 1.2.1

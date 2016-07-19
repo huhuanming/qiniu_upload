@@ -101,7 +101,7 @@ static QiniuToken *qiniuToken = nil;
 -(NSString*)encryptMD5String:(NSString*)string{
     const char *cStr = [string UTF8String];
     unsigned char result[32];
-    CC_MD5( cStr, strlen(cStr),result );
+    CC_MD5( cStr, (CC_LONG)strlen(cStr),result );
     NSMutableString *hash =[NSMutableString string];
     for (int i = 0; i < 16; i++)
         [hash appendFormat:@"%02X", result[i]];

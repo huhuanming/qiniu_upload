@@ -10,7 +10,7 @@
 #import "QiniuUploader.h"
 
 
-@interface DemoViewController ()<UIImagePickerControllerDelegate>{
+@interface DemoViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>{
     UIImageView *imageView;
 }
 
@@ -71,7 +71,7 @@
     pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     pickerController.delegate = self;
     pickerController.allowsEditing = YES; //是否可编辑
-    [self presentModalViewController:pickerController animated:YES];
+    [self presentViewController:pickerController animated:YES completion:nil];
 }
 
 - (void)uploadImageFiles
@@ -85,18 +85,18 @@
     [uploader addFile:file];
     [uploader addFile:file];
     
-    [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
-        NSLog(@"index:%ld key:%@",(long)index,key);
+    [uploader setUploadOneFileSucceeded:^(AFHTTPSessionManager *manager, NSInteger index, NSString *key){
+        NSLog(@"index:%ld key:%@",(long)index, key);
     }];
     
-    [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
-        NSLog(@"index:%ld percent:%lf",(long)index,percent);
+    [uploader setUploadOneFileProgress:^(AFHTTPSessionManager *manager, NSInteger index, NSProgress *process){
+        NSLog(@"index:%ld percent:%@",(long)index, process);
         
     }];
     [uploader setUploadAllFilesComplete:^(void){
         NSLog(@"complete");
     }];
-    [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
+    [uploader setUploadOneFileFailed:^(AFHTTPSessionManager *manager, NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
     }];
     [uploader startUpload];
@@ -114,18 +114,18 @@
     [uploader addFile:file];
     [uploader addFile:file];
     
-    [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
-        NSLog(@"index:%ld key:%@",(long)index,key);
+    [uploader setUploadOneFileSucceeded:^(AFHTTPSessionManager *manager, NSInteger index, NSString *key){
+        NSLog(@"index:%ld key:%@",(long)index, key);
     }];
     
-    [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
-        NSLog(@"index:%ld percent:%lf",(long)index,percent);
+    [uploader setUploadOneFileProgress:^(AFHTTPSessionManager *manager, NSInteger index, NSProgress *process){
+        NSLog(@"index:%ld percent:%@",(long)index, process);
         
     }];
     [uploader setUploadAllFilesComplete:^(void){
         NSLog(@"complete");
     }];
-    [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
+    [uploader setUploadOneFileFailed:^(AFHTTPSessionManager *manager, NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
     }];
     [uploader startUpload];
@@ -149,18 +149,17 @@
     
     NSMutableArray *metaArray = [[NSMutableArray alloc] init];
     
-    [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
+    [uploader setUploadOneFileSucceeded:^(AFHTTPSessionManager *manager, NSInteger index, NSString *key){
         NSLog(@"index:%ld key:%@",(long)index,key);
     }];
     
-    [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
-        NSLog(@"index:%ld percent:%lf",(long)index,percent);
-        NSLog(@"%@", metaArray[index]);
+    [uploader setUploadOneFileProgress:^(AFHTTPSessionManager *manager, NSInteger index,NSProgress *process){
+        NSLog(@"index:%ld percent:%@",(long)index, process);
     }];
     [uploader setUploadAllFilesComplete:^(void){
         NSLog(@"complete");
     }];
-    [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
+    [uploader setUploadOneFileFailed:^(AFHTTPSessionManager *manager, NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
     }];
     
