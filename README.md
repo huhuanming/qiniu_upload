@@ -1,5 +1,5 @@
 
-qiniu_upload 是一款支持七牛云存储的ios/mac sdk。它基于AFNetworking 2.x版本和七牛官方API构建。
+qiniu_upload 是一款支持七牛云存储的 ios/mac sdk。它基于 [AFNetworking 3.x](https://github.com/AFNetworking/AFNetworking) 版本和七牛官方API构建。
 
 （ _(:3」∠)_上面的话太严肃了写得我好难受）
 
