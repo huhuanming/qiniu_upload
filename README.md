@@ -1,3 +1,4 @@
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QiniuUpload.svg)](https://img.shields.io/cocoapods/v/QiniuUpload.svg)
 
 qiniu_upload 是一款支持七牛云存储的 iOS/macOS sdk。它基于 [AFNetworking 3.x](https://github.com/AFNetworking/AFNetworking) 版本和七牛官方 Web API 构建。
 
