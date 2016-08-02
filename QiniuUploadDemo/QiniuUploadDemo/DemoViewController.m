@@ -10,7 +10,8 @@
 #import "QiniuUploader.h"
 
 
-@interface DemoViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>{
+@interface DemoViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,
+    UIAlertViewDelegate>{
     UIImageView *imageView;
     QiniuUploader *uploader;
 }
@@ -65,7 +66,7 @@
     [stopButton addTarget:self action:@selector(stopClick:) forControlEvents:UIControlEventTouchUpInside];
     
     //register qiniu
-    [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
+    [QiniuToken registerWithScope:@"temp" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
     NSLog(@"%@",[[QiniuToken sharedQiniuToken] uploadToken]);
 }
 
@@ -93,6 +94,7 @@
 - (void)stopClick:(id)sender
 {
     [uploader cancelAllUploadTask];
+    NSLog(@"All uploading task stop now!!!");
 }
 
 // Upload
@@ -116,8 +118,13 @@
         NSLog(@"index:%ld percent:%@",(long)index, process);
         
     }];
+    
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Images" message:@"All Uploaded" delegate:self cancelButtonTitle:@"Okay.." otherButtonTitles:nil];
+    
     [uploader setUploadAllFilesComplete:^(void){
         NSLog(@"complete");
+        [alertView show];
     }];
     [uploader setUploadOneFileFailed:^(AFHTTPSessionManager *manager, NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
@@ -145,8 +152,12 @@
         NSLog(@"index:%ld percent:%@",(long)index, process);
         
     }];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Audio" message:@"one Uploaded" delegate:self cancelButtonTitle:@"Okay.." otherButtonTitles:nil];
+    
     [uploader setUploadAllFilesComplete:^(void){
         NSLog(@"complete");
+        [alertView show];
     }];
     [uploader setUploadOneFileFailed:^(AFHTTPSessionManager *manager, NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
@@ -179,6 +190,7 @@
     [uploader setUploadOneFileProgress:^(AFHTTPSessionManager *manager, NSInteger index,NSProgress *process){
         NSLog(@"index:%ld percent:%@",(long)index, process);
     }];
+    
     [uploader setUploadAllFilesComplete:^(void){
         NSLog(@"complete");
     }];

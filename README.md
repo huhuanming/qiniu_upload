@@ -12,8 +12,11 @@ UP 主继续填坑了。。
 
 ##### TODO
 - [ ] 支持断点续传
+- [ ] 减小内存占用
+- [ ] 支持多种数据来源，包括 ALAsset, NSData，NSFileManager
 - [ ] 支持并发上传
 - [x] 支持版本更新在开发环境中提示 
+- [x] Remove GTMBASE64 TO QUMBASE64
 - [x] Remove all warnings 
 - [ ] Remove AFNetWorking support
 - [ ] support swift
@@ -144,6 +147,10 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 最后无耻的求个star...
 
 #####更新记录
+    版本 : 1.5.4
+    更新内容: 修复了 cancelAllUploadTask 不能正常工作的问题,
+             为 Demo 中的按钮增加了点击事件,
+             为 GTMBASE64 移除了名字
     版本 : 1.5.2
     更新内容: 修复了一片 bug,
              增加了在开发环境下的版本更新提示,
