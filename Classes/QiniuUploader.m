@@ -12,6 +12,8 @@
 
 @implementation QiniuUploader{
     NSString *accessToken;
+    NSURLSessionUploadTask *currentTask;
+    Boolean isStop;
 }
 
 - (id)init
@@ -23,8 +25,6 @@
 {
     if (self = [super init]) {
         self.files = [[NSMutableArray alloc] init];
-        self.operationQueue = [[NSOperationQueue alloc] init];
-        [self.operationQueue setMaxConcurrentOperationCount:1];
     }
     #ifdef DEBUG
         [QiniuUploader checkVersion];
@@ -53,17 +53,20 @@
     if (!self.files) {
         return NO;
     }
+    isStop = false;
     [self getQiniuFileSourceDataAndCreateOperation:0];
     return YES;
 }
 
 - (Boolean)cancelAllUploadTask
 {
-    if (self.operationQueue.operations.count == 0) {
-        return NO;
+    if (currentTask) {
+        [currentTask cancel];
+        isStop = true;
+        currentTask = nil;
+        return YES;
     }
-    [self.operationQueue cancelAllOperations];
-    return YES;
+    return NO;
 }
 
 - (NSURLSessionUploadTask
@@ -91,18 +94,18 @@
         self.uploadOneFileProgress(operationManager, index, uploadProgress);
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
-            if (self.uploadOneFileFailed) {
+            if (self.uploadOneFileFailed && error.code != -999) {
                 self.uploadOneFileFailed(operationManager, index, [error copy]);
             }
         } else {
             if (self.uploadOneFileSucceeded) {
                 self.uploadOneFileSucceeded(operationManager,index,responseObject[@"key"]);
-                if (index != self.files.count -1) {
+                if (index != self.files.count - 1 && isStop == false) {
                     [self getQiniuFileSourceDataAndCreateOperation:index+1];
                 }
             }
-            if (index == self.files.count -1) {
-                
+            if (index == self.files.count - 1) {
+                currentTask = nil;
                 if (self.uploadAllFilesComplete) {
                     self.uploadAllFilesComplete();
                 }
@@ -118,6 +121,7 @@
     QiniuFile *qiniuFile = self.files[index];
     if (qiniuFile.rawData) {
         NSURLSessionUploadTask *task = [self QiniuOperation:index sourceData:qiniuFile.rawData];
+        currentTask = task;
         [task resume];
     }else{
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -133,6 +137,7 @@
                  self.uploadOneFileFailed(nil, index, [[[NSError alloc] initWithDomain:@"no found binary data in this image" code:1404 userInfo:nil] copy]);
             }else{
                 NSURLSessionUploadTask *task = [self QiniuOperation:index sourceData:sourceData];
+                currentTask = task;
                 [task resume];
             }
         } failureBlock:^(NSError *error) {
@@ -147,7 +152,7 @@
 }
 
 + (NSInteger)version {
-    return 1;
+    return 2;
 }
 
 

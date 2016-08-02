@@ -12,6 +12,7 @@
 
 @interface DemoViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>{
     UIImageView *imageView;
+    QiniuUploader *uploader;
 }
 
 @end
@@ -41,31 +42,36 @@
     [imageSelectedButton setFrame:CGRectMake(60,260, 100, 50)];
     [imageSelectedButton setTitle:@"select image" forState:UIControlStateNormal];
     [self.view addSubview:imageSelectedButton];
-    [imageSelectedButton addTarget:self action:@selector(imageSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [imageSelectedButton addTarget:self action:@selector(imageSelectedClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *imageUploaderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [imageUploaderButton setFrame:CGRectMake(20,300, 100, 50)];
     [imageUploaderButton setTitle:@"upload image" forState:UIControlStateNormal];
     [self.view addSubview:imageUploaderButton];
-   
+    [imageUploaderButton addTarget:self action:@selector(imageUploadClick:) forControlEvents:UIControlEventTouchUpInside];
+
     
     UIButton *audioUploaderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [audioUploaderButton setFrame:CGRectMake(140,300, 100, 50)];
     [audioUploaderButton setTitle:@"upload audio" forState:UIControlStateNormal];
     [self.view addSubview:audioUploaderButton];
-    //register qiniu
+    [audioUploaderButton addTarget:self action:@selector(audioUploadClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    UIButton *stopButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [stopButton setFrame:CGRectMake(240,300, 100, 50)];
+    [stopButton setTitle:@"stop All!" forState:UIControlStateNormal];
+    [self.view addSubview:stopButton];
+    [stopButton addTarget:self action:@selector(stopClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //register qiniu
     [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"];
     NSLog(@"%@",[[QiniuToken sharedQiniuToken] uploadToken]);
-//    // upload images
-    [self uploadImageFiles];
-//    // upload audios
-//    [self uploadAudio];
-    
-    
 }
 
-- (void)imageSelected:(id)sender
+// click events
+
+- (void)imageSelectedClick:(id)sender
 {
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -74,13 +80,30 @@
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
+- (void)imageUploadClick:(id)sender
+{
+    [self uploadImageFiles];
+}
+
+- (void)audioUploadClick:(id)sender
+{
+    [self uploadAudio];
+}
+
+- (void)stopClick:(id)sender
+{
+    [uploader cancelAllUploadTask];
+}
+
+// Upload
+
 - (void)uploadImageFiles
 {
     //add file
     QiniuFile *file = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(imageView.image, 1.0f)];
     
     //startUpload
-    QiniuUploader *uploader = [[QiniuUploader alloc] init];
+    uploader = [[QiniuUploader alloc] init];
     [uploader addFile:file];
     [uploader addFile:file];
     [uploader addFile:file];
@@ -109,7 +132,7 @@
     QiniuFile *file = [[QiniuFile alloc] initWithFileData:[NSData dataWithContentsOfFile:path]];
     
     //startUpload
-    QiniuUploader *uploader = [[QiniuUploader alloc] init];
+    uploader = [[QiniuUploader alloc] init];
     [uploader addFile:file];
     [uploader addFile:file];
     [uploader addFile:file];
@@ -142,7 +165,7 @@
     
     QiniuFile *file = [[QiniuFile alloc] initWithAssetURL:info[@"UIImagePickerControllerReferenceURL"]];
     
-    QiniuUploader *uploader = [[QiniuUploader alloc] init];
+    uploader = [[QiniuUploader alloc] init];
     [uploader addFile:file];
     [uploader addFile:file];
     [uploader addFile:file];

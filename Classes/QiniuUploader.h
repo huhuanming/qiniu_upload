@@ -23,7 +23,8 @@ typedef NSData* (^processAssetBlock)(ALAsset *asset);
 @interface QiniuUploader : NSObject
 
 
-@property (nonatomic, strong) NSOperationQueue *operationQueue;
+@property (nonatomic, strong) NSOperationQueue *operationQueue
+                                            __deprecated_msg("deprecated in version 1.6.0");
 @property (retain, nonatomic) NSMutableArray *files;
 
 @property (nonatomic, copy) UploadOneFileSucceededBlock uploadOneFileSucceeded;
@@ -56,10 +57,11 @@ typedef NSData* (^processAssetBlock)(ALAsset *asset);
  *  @param AccessToken Qiniu AccessToken from your sever
  *  @return Boolean if files were nil, it will return NO.
  */
-- (Boolean)startUploadWithAccessToken:(NSString *)theAccessToken;
+- (Boolean)startUploadWithAccessToken:(NSString *)theAccessToken
+                                            __deprecated_msg("deprecated in version 1.6.0");
 
 /**
- *  cancel and clear All Upload Task
+ *  cancel uploading task at once.
  */
 - (Boolean)cancelAllUploadTask;
 

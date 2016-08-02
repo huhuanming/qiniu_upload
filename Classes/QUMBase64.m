@@ -1,5 +1,5 @@
 //
-//  GTMBase64.m
+//  QUMBase64.m
 //  Moto
 //
 //  Created by 胡 桓铭 on 14-2-17.
@@ -7,7 +7,7 @@
 //
 
 //
-//  GTMBase64.m
+//  QUMBase64.m
 //
 //  Copyright 2006-2008 Google Inc.
 //
@@ -24,8 +24,8 @@
 //  the License.
 //
 
-#import "GTMBase64.h"
-#import "GTMDefines.h"
+#import "QUMBase64.h"
+#import "QUMDefines.h"
 
 static const char *kBase64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 static const char *kWebSafeBase64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
@@ -161,7 +161,7 @@ static const char kWebSafeBase64DecodeChars[] = {
 //   YES if the character is a whitespace character.
 //   NO if the character is not a whitespace character.
 //
-GTM_INLINE BOOL IsSpace(unsigned char c) {
+QUM_INLINE BOOL IsSpace(unsigned char c) {
     // we use our own mapping here because we don't want anything w/ locale
     // support.
     static BOOL kSpaces[256] = {
@@ -200,7 +200,7 @@ GTM_INLINE BOOL IsSpace(unsigned char c) {
 // Returns:
 //   The guessed encoded length for a source length
 //
-GTM_INLINE NSUInteger CalcEncodedLength(NSUInteger srcLen, BOOL padded) {
+QUM_INLINE NSUInteger CalcEncodedLength(NSUInteger srcLen, BOOL padded) {
     NSUInteger intermediate_result = 8 * srcLen + 5;
     NSUInteger len = intermediate_result / 6;
     if (padded) {
@@ -216,12 +216,12 @@ GTM_INLINE NSUInteger CalcEncodedLength(NSUInteger srcLen, BOOL padded) {
 // Returns:
 //   The guessed decoded length for a source length
 //
-GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
+QUM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     return (srcLen + 3) / 4 * 3;
 }
 
 
-@interface GTMBase64 (PrivateMethods)
+@interface QUMBase64 (PrivateMethods)
 
 +(NSData *)baseEncode:(const void *)bytes
                length:(NSUInteger)length
@@ -250,7 +250,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
 @end
 
 
-@implementation GTMBase64
+@implementation QUMBase64
 
 //
 // Standard Base64 (RFC) handling
@@ -405,7 +405,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
 
 @end
 
-@implementation GTMBase64 (PrivateMethods)
+@implementation QUMBase64 (PrivateMethods)
 
 //
 // baseEncode:length:charset:padded:

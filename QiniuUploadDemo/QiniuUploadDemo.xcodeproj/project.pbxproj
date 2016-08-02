@@ -26,7 +26,7 @@
 		85E7EB42192665BA00F17453 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E7EB2A192665BA00F17453 /* UIKit.framework */; };
 		85E7EB4A192665BA00F17453 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85E7EB48192665BA00F17453 /* InfoPlist.strings */; };
 		85E7EB4C192665BA00F17453 /* QiniuUploadDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E7EB4B192665BA00F17453 /* QiniuUploadDemoTests.m */; };
-		85FB3954192789E400139036 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB3952192789E400139036 /* GTMBase64.m */; };
+		85FB3954192789E400139036 /* QUMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB3952192789E400139036 /* QUMBase64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,9 +66,9 @@
 		85E7EB47192665BA00F17453 /* QiniuUploadDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QiniuUploadDemoTests-Info.plist"; sourceTree = "<group>"; };
 		85E7EB49192665BA00F17453 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		85E7EB4B192665BA00F17453 /* QiniuUploadDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QiniuUploadDemoTests.m; sourceTree = "<group>"; };
-		85FB3951192789E400139036 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
-		85FB3952192789E400139036 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
-		85FB3953192789E400139036 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		85FB3951192789E400139036 /* QUMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUMBase64.h; sourceTree = "<group>"; };
+		85FB3952192789E400139036 /* QUMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QUMBase64.m; sourceTree = "<group>"; };
+		85FB3953192789E400139036 /* QUMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QUMDefines.h; sourceTree = "<group>"; };
 		8C435235B07AC30DF86831AB /* libPods-QiniuUploadDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QiniuUploadDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A676BDEA38D6AF2C13EED87 /* Pods-QiniuUploadDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiniuUploadDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-QiniuUploadDemo/Pods-QiniuUploadDemo.release.xcconfig"; sourceTree = "<group>"; };
 		B3AE3CACC9829E89B1644699 /* Pods-QiniuUploadDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiniuUploadDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QiniuUploadDemo/Pods-QiniuUploadDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,9 +102,9 @@
 		85780A8A192667EF0054BADD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				85FB3951192789E400139036 /* GTMBase64.h */,
-				85FB3952192789E400139036 /* GTMBase64.m */,
-				85FB3953192789E400139036 /* GTMDefines.h */,
+				85FB3951192789E400139036 /* QUMBase64.h */,
+				85FB3952192789E400139036 /* QUMBase64.m */,
+				85FB3953192789E400139036 /* QUMDefines.h */,
 				85780A8B192723370054BADD /* QiniuUploader.h */,
 				85780A8C192723370054BADD /* QiniuUploader.m */,
 				85780A8E19277D8D0054BADD /* QiniuToken.h */,
@@ -355,7 +355,7 @@
 			files = (
 				85780A8D192723370054BADD /* QiniuUploader.m in Sources */,
 				85E7EB37192665BA00F17453 /* AppDelegate.m in Sources */,
-				85FB3954192789E400139036 /* GTMBase64.m in Sources */,
+				85FB3954192789E400139036 /* QUMBase64.m in Sources */,
 				85780A9019277D8D0054BADD /* QiniuToken.m in Sources */,
 				85DA87EE192858B50032A438 /* QiniuFile.m in Sources */,
 				856C853D1928FEA300B587EF /* DemoViewController.m in Sources */,

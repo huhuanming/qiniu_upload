@@ -1,5 +1,5 @@
 //
-//  GTMBase64.h
+//  QUMBase64.h
 //  Moto
 //
 //  Created by 胡 桓铭 on 14-2-17.
@@ -7,7 +7,7 @@
 //
 
 //
-//  GTMBase64.h
+//  QUMBase64.h
 //
 //  Copyright 2006-2008 Google Inc.
 //
@@ -25,9 +25,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GTMDefines.h"
+#import "QUMDefines.h"
 
-// GTMBase64
+// QUMBase64
 //
 /// Helper for handling Base64 and WebSafeBase64 encodings
 //
@@ -37,7 +37,7 @@
 /// encoding.  You must use the webSafe* methods together, the data does not
 /// interop with the RFC methods.
 //
-@interface GTMBase64 : NSObject
+@interface QUMBase64 : NSObject
 
 //
 // Standard Base64 (RFC) handling

@@ -1,5 +1,5 @@
 //
-//  GTMDefines.h
+//  QUMDefines.h
 //  Moto
 //
 //  Created by 胡 桓铭 on 14-2-17.
@@ -7,7 +7,7 @@
 //
 
 //
-// GTMDefines.h
+// QUMDefines.h
 //
 //  Copyright 2008 Google Inc.
 //
@@ -42,43 +42,43 @@
 // ----------------------------------------------------------------------------
 
 
-// GTMHTTPFetcher will support logging by default but only hook its input
+// QUMHTTPFetcher will support logging by default but only hook its input
 // stream support for logging when requested.  You can control the inclusion of
 // the code by providing your own definitions for these w/in a prefix header.
 //
-#ifndef GTM_HTTPFETCHER_ENABLE_LOGGING
-#define GTM_HTTPFETCHER_ENABLE_LOGGING 1
-#endif // GTM_HTTPFETCHER_ENABLE_LOGGING
-#ifndef GTM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING
-#define GTM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING 0
-#endif // GTM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING
+#ifndef QUM_HTTPFETCHER_ENABLE_LOGGING
+#define QUM_HTTPFETCHER_ENABLE_LOGGING 1
+#endif // QUM_HTTPFETCHER_ENABLE_LOGGING
+#ifndef QUM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING
+#define QUM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING 0
+#endif // QUM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING
 
-// By setting the GTM_CONTAINERS_VALIDATION_FAILED_LOG and
-// GTM_CONTAINERS_VALIDATION_FAILED_ASSERT macros you can control what happens
+// By setting the QUM_CONTAINERS_VALIDATION_FAILED_LOG and
+// QUM_CONTAINERS_VALIDATION_FAILED_ASSERT macros you can control what happens
 // when a validation fails. If you implement your own validators, you may want
 // to control their internals using the same macros for consistency.
-#ifndef GTM_CONTAINERS_VALIDATION_FAILED_ASSERT
-#define GTM_CONTAINERS_VALIDATION_FAILED_ASSERT 0
+#ifndef QUM_CONTAINERS_VALIDATION_FAILED_ASSERT
+#define QUM_CONTAINERS_VALIDATION_FAILED_ASSERT 0
 #endif
 
 // Give ourselves a consistent way to do inlines.  Apple's macros even use
 // a few different actual definitions, so we're based off of the foundation
 // one.
-#if !defined(GTM_INLINE)
+#if !defined(QUM_INLINE)
 #if defined (__GNUC__) && (__GNUC__ == 4)
-#define GTM_INLINE static __inline__ __attribute__((always_inline))
+#define QUM_INLINE static __inline__ __attribute__((always_inline))
 #else
-#define GTM_INLINE static __inline__
+#define QUM_INLINE static __inline__
 #endif
 #endif
 
 // Give ourselves a consistent way of doing externs that links up nicely
 // when mixing objc and objc++
-#if !defined (GTM_EXTERN)
+#if !defined (QUM_EXTERN)
 #if defined __cplusplus
-#define GTM_EXTERN extern "C"
+#define QUM_EXTERN extern "C"
 #else
-#define GTM_EXTERN extern
+#define QUM_EXTERN extern
 #endif
 #endif
 
@@ -113,9 +113,9 @@
 #endif // _GTMDevLog
 
 // Declared here so that it can easily be used for logging tracking if
-// necessary. See GTMUnitTestDevLog.h for details.
+// necessary. See QUMUnitTestDevLog.h for details.
 @class NSString;
-GTM_EXTERN void _GTMUnitTestDevLog(NSString *format, ...);
+QUM_EXTERN void _GTMUnitTestDevLog(NSString *format, ...);
 
 #ifndef _GTMDevAssert
 // we directly invoke the NSAssert handler so we can pass on the varargs
@@ -160,25 +160,25 @@ typedef char _GTMCompileAssertSymbol(__LINE__, msg) [ ((test) ? 1 : -1) ]
 // ============================================================================
 
 // ----------------------------------------------------------------------------
-// CPP symbols defined based on the project settings so the GTM code has
+// CPP symbols defined based on the project settings so the QUM code has
 // simple things to test against w/o scattering the knowledge of project
 // setting through all the code.
 // ----------------------------------------------------------------------------
 
-// Provide a single constant CPP symbol that all of GTM uses for ifdefing
+// Provide a single constant CPP symbol that all of QUM uses for ifdefing
 // iPhone code.
 #include <TargetConditionals.h>
 #if TARGET_OS_IPHONE // iPhone SDK
 // For iPhone specific stuff
-#define GTM_IPHONE_SDK 1
+#define QUM_IPHONE_SDK 1
 #if TARGET_IPHONE_SIMULATOR
-#define GTM_IPHONE_SIMULATOR 1
+#define QUM_IPHONE_SIMULATOR 1
 #else
-#define GTM_IPHONE_DEVICE 1
+#define QUM_IPHONE_DEVICE 1
 #endif  // TARGET_IPHONE_SIMULATOR
 #else
 // For MacOS specific stuff
-#define GTM_MACOS_SDK 1
+#define QUM_MACOS_SDK 1
 #endif
 
 // To simplify support for 64bit (and Leopard in general), we provide the type
