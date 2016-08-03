@@ -14,6 +14,7 @@ UP 主继续填坑了。。
 - [ ] 支持断点续传
 - [ ] 减小内存占用
 - [ ] 支持多种数据来源，包括 ALAsset, NSData，NSFileManager
+- [ ] 支持分片上传
 - [ ] 支持并发上传
 - [x] 支持版本更新在开发环境中提示 
 - [x] Remove GTMBASE64 TO QUMBASE64
@@ -23,6 +24,12 @@ UP 主继续填坑了。。
 - [ ] support Android
   
 大约一个月时间内完成
+
+##### TODO 的 TODO
+
+在周末结束之前的话会完成 Remove AFNetWorking support，支持多种数据来源 以及 减小内存占用，检查内存泄露等问题，保证完全无侧漏。
+支持分片和并发上传的版本预计在下周末结束之前完成。
+本周过后，使用本库的同学可以尝试更新一下，会新增一些 API，老的 API 不会立马移除，但是会标记 deprecated，然后在 2.0 时移除。
 
 
 ###如何开始
@@ -150,7 +157,7 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
     版本 : 1.5.4
     更新内容: 修复了 cancelAllUploadTask 不能正常工作的问题,
              为 Demo 中的按钮增加了点击事件,
-             为 GTMBASE64 移除了名字
+             为 GTMBASE64 换了一个名字
     版本 : 1.5.2
     更新内容: 修复了一片 bug,
              增加了在开发环境下的版本更新提示,
