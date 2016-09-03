@@ -53,13 +53,20 @@ UP 主继续填坑了。。
 
 这样初始化，一个 Token 的默认有效生命周期是5分钟，如果你想自定义生命周期的话，可以这样初始化
 
-    [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey"TimeToLive:60]
+    [QiniuToken registerWithScope:@"your_scope" SecretKey:@"your_secretKey" Accesskey:@"your_accesskey" TimeToLive:60]
 
-QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
+生成一个上传凭证
+	
+	NSString *uploadToken = [[QiniuToken sharedQiniuToken] uploadToken]
 
-当然，如果你希望从自家服务器动态获取 Token，你也可以在 QiniuUploader 里面这样写
 
-    [uploader startUploadWithAccessToken:@"your_access_token"];
+不推荐在生产环境的代码中直接填写 accesskey 和 secretKey 来使用。
+
+### 使用上传凭证
+
+当然，如果你希望从自家服务器动态获取 upload_token，你也可以在获取后，填写到下面
+
+    [uploader startUploadWithAccessToken:@"your_upload_token"];
 
 ###QiniuFile
 初始化要上传的七牛文件，图片，音频都可以。
@@ -100,22 +107,21 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
     
 ## 上传一个文件成功时
 
-    [uploader setUploadOneFileSucceeded:^(AFHTTPRequestOperation *operation, NSInteger index, NSString *key){
-        NSLog(@"index:%ld key:%@",(long)index,key);
+    [uploader setUploadOneFileSucceeded:^(NSInteger index, NSString *key, NSDictionary *info){
+        NSLog(@"index:%ld key:%@ response: %@",(index, key, info);
     }];
 
     这个 key 就是文件在七牛的唯一标识，七牛的 CDN 地址 + key 就可以访问该文件了
 ## 上传一个文件失败时
     
-    [uploader setUploadOneFileFailed:^(AFHTTPRequestOperation *operation, NSInteger index, NSDictionary *error){
+    [uploader setUploadOneFileFailed:^(NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
     }];
 
-    当 error code 是 1404 时，表示当前上传的文件找不到了，这个错误码是本地码。
 ## 当前上传文件的进度
 
-    [uploader setUploadOneFileProgress:^(AFHTTPRequestOperation *operation, NSInteger index, double percent){
-        NSLog(@"index:%ld percent:%lf",(long)index,percent);
+    [uploader setUploadOneFileProgress:^(NSInteger index, NSProgress *process){
+        NSLog(@"index:%ld process:%@", index, process);
     }];
 ## 全部上传完成
     

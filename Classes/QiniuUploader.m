@@ -48,10 +48,15 @@
 - (Boolean)startUploadWithAccessToken:(NSString *)theAccessToken
 {
     accessToken = theAccessToken;
-    return [self startUpload];
+    return [self _startUpload];
 }
 
 - (Boolean)startUpload
+{
+    return [self _startUpload];
+}
+
+- (Boolean)_startUpload
 {
     if (self.isRunning) {
         return NO;

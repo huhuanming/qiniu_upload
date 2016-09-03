@@ -132,7 +132,7 @@ UIAlertViewDelegate>{
     [uploader setUploadOneFileFailed:^(NSInteger index, NSDictionary *error){
         NSLog(@"%@",error);
     }];
-    [uploader startUpload];
+    [uploader startUploadWithAccessToken:[[QiniuToken sharedQiniuToken] uploadToken]];
 }
 
 - (void)uploadAudio
@@ -172,7 +172,7 @@ UIAlertViewDelegate>{
         NSLog(@"%@",error);
     }];
     
-    [uploader startUpload];
+    [uploader startUploadWithAccessToken:[[QiniuToken sharedQiniuToken] uploadToken]];
 }
 
 // UIImagePickerControllerdelegate
@@ -212,7 +212,7 @@ UIAlertViewDelegate>{
             NSLog(@"%@",error);
         }];
         
-        [uploader startUpload];
+        [uploader startUploadWithAccessToken:[[QiniuToken sharedQiniuToken] uploadToken]];
     } failureBlock: nil];
 }
 

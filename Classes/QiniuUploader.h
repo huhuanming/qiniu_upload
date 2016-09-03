@@ -42,7 +42,7 @@ typedef void (^UploadAllFilesCompleteBlock)(void);
  *  start upload files to qiniu cloud storage.
  *  @return Boolean if files were nil, it will return NO.
  */
-- (Boolean)startUpload;
+- (Boolean)startUpload __deprecated_msg("deprecated in version 2.4.0");
 
 
 /**
@@ -50,8 +50,7 @@ typedef void (^UploadAllFilesCompleteBlock)(void);
  *  @param AccessToken Qiniu AccessToken from your sever
  *  @return Boolean if files were nil, it will return NO.
  */
-- (Boolean)startUploadWithAccessToken:(NSString *)theAccessToken
-                                            __deprecated_msg("deprecated in version 1.6.0");
+- (Boolean)startUploadWithAccessToken:(NSString *)theAccessToken;
 
 /**
  *  cancel uploading task at once.
