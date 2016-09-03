@@ -17,20 +17,14 @@ typedef void (^UploadOneFileProgressBlock)(NSInteger index, NSProgress *process)
 typedef void (^UploadAllFilesCompleteBlock)(void);
 
 
-typedef NSData* (^processAssetBlock)(ALAsset *asset);
-
 @interface QiniuUploader : NSObject <NSURLSessionTaskDelegate>
 
-
-@property (nonatomic) NSOperationQueue *operationQueue
-                                            __deprecated_msg("deprecated in version 1.6.0");
 @property (retain, atomic) NSMutableArray *files;
 
 @property UploadOneFileSucceededBlock uploadOneFileSucceeded;
 @property UploadOneFileFailedBlock uploadOneFileFailed;
 @property UploadOneFileProgressBlock uploadOneFileProgress;
 @property UploadAllFilesCompleteBlock uploadAllFilesComplete;
-@property processAssetBlock processAsset;
 @property (assign, atomic)Boolean isRunning;
 
 /**

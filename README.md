@@ -1,9 +1,7 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QiniuUpload.svg)](https://img.shields.io/cocoapods/v/QiniuUpload.svg)
 [![Platform](https://img.shields.io/cocoapods/p/QiniuUpload.svg?style=flat)](http://cocoadocs.org/docsets/QiniuUpload)
 
-qiniu_upload 是一款支持七牛云存储的 iOS/macOS sdk。它基于 [AFNetworking 3.x](https://github.com/AFNetworking/AFNetworking) 版本和七牛官方 Web API 构建。
-
-（ _(:3」∠)_上面的话太严肃了写得我好难受）
+qiniu_upload 是一款支持七牛云存储的 iOS/macOS sdk。
 
 qiniu_upload 除了文件上传等基本功能完，还实现了多文件队列上传。
 
@@ -12,14 +10,15 @@ UP 主继续填坑了。。
 
 ##### TODO
 - [ ] 支持断点续传
-- [ ] 减小内存占用
-- [ ] 支持多种数据来源，包括 ALAsset, NSData，NSFileManager
+- [x] 减小内存占用，清除内存泄露
+- [x] 支持多种数据来源，包括 ALAsset, NSData，NSFileManager
+- [x] 支持 NSInputStream 方式上传
 - [ ] 支持分片上传
 - [ ] 支持并发上传
 - [x] 支持版本更新在开发环境中提示 
-- [x] Remove GTMBASE64 TO QUMBASE64
 - [x] Remove all warnings 
-- [ ] Remove AFNetWorking support
+- [x] Remove AFNetWorking support
+- [ ] support More upload backends，such as s3, upyun, etc.
 - [ ] support swift
 - [ ] support Android
   
@@ -42,7 +41,7 @@ UP 主继续填坑了。。
 
 ####手动安装
 
-复制Classes目录下的类到工程项目中就行了，请确保您的项目已有 AFNetworking 3.x。
+复制Classes目录下的类到工程项目中就行了。
 
 ####开始编码
 
@@ -63,21 +62,22 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
     [uploader startUploadWithAccessToken:@"your_access_token"];
 
 ###QiniuFile
-初始化要上传的七牛文件，图片，音频，都可以。以图片为例
+初始化要上传的七牛文件，图片，音频都可以。
+
+以图片为例「NSData 方式」
 
 	QiniuFile *file = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(your_image, 1.0f)];
 
 
-或者一段音频
+或者一段音频「路径方式」
     
     NSString *path = [NSString stringWithFormat:@"%@/%@",[NSBundle mainBundle].resourcePath,@"your_mp3"];
-    QiniuFile *file = [[QiniuFile alloc] initWithFileData:[NSData dataWithContentsOfFile:path]];
+    QiniuFile *file = [[QiniuFile alloc] initWithPath:path];
 
-先做你可以放心大胆的使用ALAsset URL了，不仅仅支持图片，什么都可以哦
 
-    QiniuFile *file = [[QiniuFile alloc] initWithAssetURL:your_alasset_url]];
+或者 ALAsset
 
-数据处理看一看下面那个叫 processAsset 的 Block，你就知道了。
+    QiniuFile *file = [[QiniuFile alloc] initWithAsset: your_asset]];
 
 ###QiniuUploader
 
@@ -137,15 +137,6 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 	
 	[uploader cancelAllUploadTask]
 
-##processAsset
-    当上传处理带 ALAsset URL 的 Qiniu File 时，你可能希望能压缩下图片啊，处理下视频啊。
-    之类之类的，都可以在这个 Block 中实现。
-    
-	[uploader setProcessAsset:^NSData*(ALAsset *asset){
-        UIImage *tempImage = [UIImage imageWithCGImage:asset.defaultRepresentation.fullResolutionImage scale:1.0 orientation:(UIImageOrientation)asset.defaultRepresentation.orientation];
-        return UIImageJPEGRepresentation(tempImage, 0.1);
-    }];
-
 ## 最后
 
 如果还有不清楚的地方, 可以看看 QiniuUploadDemo，里面什么都有。。。
@@ -153,25 +144,15 @@ QiniuToken 只需要初始化一次，建议在 AppDelegate 中使用
 如果你有希望加入的特性，可以在 issue 在留言。
 最后无耻的求个star...
 
+## Thanks
+
+Thanks for [@pavelosipov](https://github.com/pavelosipov)
+
+[POSInputStreamLibrary](https://github.com/pavelosipov/POSInputStreamLibrary
+) 帮我节省了很多时间去做用文件流形式读取 ALAsset 的工作
+
 #####更新记录
-    版本 : 1.5.4
-    更新内容: 修复了 cancelAllUploadTask 不能正常工作的问题,
-             为 Demo 中的按钮增加了点击事件,
-             为 GTMBASE64 换了一个名字
-    版本 : 1.5.2
-    更新内容: 修复了一片 bug,
-             增加了在开发环境下的版本更新提示,
-             AFNetworking 换到了 3.0 以上版本,
-             移除了所有 warnings
-    版本 : 1.3
-    更新内容: 新增从自家获取七牛的Token
-    版本 : 1.2.1
-    更新内容: 修复当文件不存在时，引起的崩溃
-    版本 : 1.2
-    更新内容: 非常非常省内存了，顺带增强了对 ALAsset URL 的支持
-    版本 : 1.0.1
-    更新内容: 几乎全部重写
-    版本 : 0.1.1
-    更新内容: 修正了 scope 写死的错误
-	版本 : 0.1
-	更新内容: 实现了七牛空间的文件上传，和多文件队列上传。
+	
+[CHANGELOG.md](https://github.com/huhuanming/qiniu_upload/blob/master/CHANGELOG.md)
+	
+	

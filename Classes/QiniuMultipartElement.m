@@ -125,7 +125,7 @@ static NSString * MIMETypeForExtension(NSString * extension) {
     self.headers       = [[NSString stringWithFormat:kHeaderPathFormat, boundary, name, filename, mimeType] dataUsingEncoding:NSUTF8StringEncoding];
     self.headersLength = [self.headers length];
     self.body          = [NSInputStream pos_inputStreamWithAssetURL:rep.url];
-    self.bodyLength    =  rep.size;
+    self.bodyLength    =  (NSUInteger)rep.size;
     [self updateLength];
     return self;
 }

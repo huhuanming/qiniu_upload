@@ -92,7 +92,7 @@
             
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kQiniuUploadURL]];
             [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", [inputStream boundary]] forHTTPHeaderField:@"Content-Type"];
-            [request setValue:[NSString stringWithFormat:@"%ld", [inputStream length]] forHTTPHeaderField:@"Content-Length"];
+            [request setValue:[NSString stringWithFormat:@"%ld", (unsigned long)[inputStream length]] forHTTPHeaderField:@"Content-Length"];
             [request setHTTPBodyStream:inputStream];
             [request setHTTPMethod:@"POST"];
             
@@ -113,7 +113,14 @@
                             });
                         }
                     } else {
-                        NSLog(@"上传成功：%ld", httpResponse.statusCode);
+                        if (self.uploadOneFileFailed) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                self.uploadOneFileFailed(i, nil);
+                                #ifdef DEBUG
+                                    NSLog(@"%@", httpResponse);
+                                #endif
+                            });
+                        }
                     }
                     
                     if (i == self.files.count - 1) {
@@ -124,7 +131,7 @@
                         }
                         [self stopUpload];
                     } else {
-                        [operations[i+1] start];
+                        [(NSOperation *)operations[i+1] start];
                     }
                 }
             }];
@@ -135,7 +142,7 @@
         i > 0 ? [operation addDependency:operations[i - 1]] : 0;
         [operations addObject:operation];
     }
-    [operations[0] start];
+    [(NSOperation *)operations[0] start];
     return YES;
 }
 
@@ -175,11 +182,11 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend{
 
 
 + (NSString *)versionName {
-    return @"1.5.4";
+    return @"2.0.0";
 }
 
 + (NSInteger)version {
-    return 2;
+    return 10;
 }
 
 #ifdef DEBUG

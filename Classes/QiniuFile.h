@@ -16,10 +16,6 @@
 
 @property ALAsset *asset;
 
-
-@property ALAssetRepresentation *assetRepresentation;
-
-
 /**
  *  name of this file. It's could be nil.
  */
@@ -43,12 +39,10 @@
 - (id)initWithPath:(NSString *)path;
 
 /**
- *  (only support image)initialize instance with binary data, and key name for it.
+ *  initialize instance with binary data, and key name for it.
  *  @param theAsset the alasset for ios native resource
  */
 - (id)initWithAsset:(ALAsset *)asset;
-
-- (id)initWithAssetRepresentation:(ALAssetRepresentation *)assetRepresentation;
 
 /**
  *  (only support image)initialize instance with binary data, and key name for it.
@@ -56,13 +50,6 @@
  */
 - (id)initWithFileData:(NSData *)theData;
 
-
-///**
-// *  initialize instance with binary data, and key name for it.
-// *  @param theData binary data
-// *
-// */
-//- (id)initWithFileData:(NSData *)theData;
 
 /**
  *  initialize instance with binary data.

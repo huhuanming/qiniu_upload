@@ -27,14 +27,6 @@
     return self;
 }
 
-- (id)initWithAssetRepresentation:(ALAssetRepresentation *)assetRepresentation
-{
-    if (self = [super init]) {
-        self.assetRepresentation = assetRepresentation;
-    }
-    return self;
-}
-
 - (id)initWithFileData:(NSData *)theData
 {
     return [self initWithFileData:theData withKey:nil];
