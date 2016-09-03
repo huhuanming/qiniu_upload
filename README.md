@@ -5,10 +5,9 @@ qiniu_upload 是一款支持七牛云存储的 iOS/macOS sdk。
 
 qiniu_upload 除了文件上传等基本功能完，还实现了多文件队列上传。
 
-UP 主继续填坑了。。
-
 
 ##### TODO
+- [ ] 添加自动化测试
 - [ ] 支持断点续传
 - [x] 减小内存占用，清除内存泄露
 - [x] 支持多种数据来源，包括 ALAsset, NSData，NSFileManager
@@ -22,15 +21,6 @@ UP 主继续填坑了。。
 - [ ] support swift
 - [ ] support Android
   
-大约一个月时间内完成
-
-##### TODO 的 TODO
-
-在周末结束之前的话会完成 Remove AFNetWorking support，支持多种数据来源 以及 减小内存占用，检查内存泄露等问题，保证完全无侧漏。
-支持分片和并发上传的版本预计在下周末结束之前完成。
-本周过后，使用本库的同学可以尝试更新一下，会新增一些 API，老的 API 不会立马移除，但是会标记 deprecated，然后在 2.0 时移除。
-
-
 ###如何开始
 ---
 ####从 CocoaPods 安装
