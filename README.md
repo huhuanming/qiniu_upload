@@ -147,7 +147,7 @@ Thanks for [@pavelosipov](https://github.com/pavelosipov)
 [POSInputStreamLibrary](https://github.com/pavelosipov/POSInputStreamLibrary
 ) 帮我节省了很多时间去做用文件流形式读取 ALAsset 的工作
 
-#####更新记录
+##更新记录
 	
 [CHANGELOG.md](https://github.com/huhuanming/qiniu_upload/blob/master/CHANGELOG.md)
 	
