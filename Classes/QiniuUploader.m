@@ -132,9 +132,9 @@
                         if(self.uploadAllFilesComplete){
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 self.uploadAllFilesComplete();
+                                [self stopUpload];
                             });
                         }
-                        [self stopUpload];
                     } else {
                         [(NSOperation *)operations[i+1] start];
                     }
