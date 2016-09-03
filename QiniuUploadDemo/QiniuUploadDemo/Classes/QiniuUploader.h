@@ -9,29 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "QiniuToken.h"
 #import "QiniuFile.h"
-#import "QiniuInputStream.h"
 
-typedef void (^UploadOneFileSucceededBlock)(NSInteger index, NSString *key, NSDictionary *info);
-typedef void (^UploadOneFileFailedBlock)(NSInteger index, NSDictionary *error);
-typedef void (^UploadOneFileProgressBlock)(NSInteger index, NSProgress *process);
+
+typedef void (^UploadOneFileSucceededBlock)(NSURLSessionTask *task, NSInteger index, NSString *key);
+typedef void (^UploadOneFileFailedBlock)(NSURLSessionTask *task, NSInteger index, NSDictionary *error);
+typedef void (^UploadOneFileProgressBlock)(NSURLSessionTask *task, NSInteger index, NSProgress *process);
 typedef void (^UploadAllFilesCompleteBlock)(void);
 
 
 typedef NSData* (^processAssetBlock)(ALAsset *asset);
 
-@interface QiniuUploader : NSObject <NSURLSessionTaskDelegate>
+@interface QiniuUploader : NSObject
 
 
-@property (nonatomic) NSOperationQueue *operationQueue
+@property (nonatomic, strong) NSOperationQueue *operationQueue
                                             __deprecated_msg("deprecated in version 1.6.0");
-@property (retain, atomic) NSMutableArray *files;
+@property (retain, nonatomic) NSMutableArray *files;
 
-@property UploadOneFileSucceededBlock uploadOneFileSucceeded;
-@property UploadOneFileFailedBlock uploadOneFileFailed;
-@property UploadOneFileProgressBlock uploadOneFileProgress;
-@property UploadAllFilesCompleteBlock uploadAllFilesComplete;
-@property processAssetBlock processAsset;
-@property (assign, atomic)Boolean isRunning;
+@property (nonatomic, copy) UploadOneFileSucceededBlock uploadOneFileSucceeded;
+@property (nonatomic, copy) UploadOneFileFailedBlock uploadOneFileFailed;
+@property (nonatomic, copy) UploadOneFileProgressBlock uploadOneFileProgress;
+@property (nonatomic, copy) UploadAllFilesCompleteBlock uploadAllFilesComplete;
+@property (nonatomic, copy) processAssetBlock processAsset;
+
 
 /**
  *  add QiniuFile to QiniuUploader

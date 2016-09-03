@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85E7EB22192665BA00F17453"
+               BlueprintIdentifier = "85DD38371D7ABA3F006A77C2"
                BuildableName = "QiniuUploadDemo.app"
                BlueprintName = "QiniuUploadDemo"
                ReferencedContainer = "container:QiniuUploadDemo.xcodeproj">
@@ -23,18 +23,28 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85E7EB3D192665BA00F17453"
+               BlueprintIdentifier = "85DD38501D7ABA3F006A77C2"
                BuildableName = "QiniuUploadDemoTests.xctest"
                BlueprintName = "QiniuUploadDemoTests"
+               ReferencedContainer = "container:QiniuUploadDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "85DD385B1D7ABA3F006A77C2"
+               BuildableName = "QiniuUploadDemoUITests.xctest"
+               BlueprintName = "QiniuUploadDemoUITests"
                ReferencedContainer = "container:QiniuUploadDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,26 +52,30 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85E7EB22192665BA00F17453"
+            BlueprintIdentifier = "85DD38371D7ABA3F006A77C2"
             BuildableName = "QiniuUploadDemo.app"
             BlueprintName = "QiniuUploadDemo"
             ReferencedContainer = "container:QiniuUploadDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85E7EB22192665BA00F17453"
+            BlueprintIdentifier = "85DD38371D7ABA3F006A77C2"
             BuildableName = "QiniuUploadDemo.app"
             BlueprintName = "QiniuUploadDemo"
             ReferencedContainer = "container:QiniuUploadDemo.xcodeproj">
@@ -71,15 +85,16 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85E7EB22192665BA00F17453"
+            BlueprintIdentifier = "85DD38371D7ABA3F006A77C2"
             BuildableName = "QiniuUploadDemo.app"
             BlueprintName = "QiniuUploadDemo"
             ReferencedContainer = "container:QiniuUploadDemo.xcodeproj">

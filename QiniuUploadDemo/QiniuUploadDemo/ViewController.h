@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ViewController.h
 //  QiniuUploadDemo
 //
 //  Created by 胡 桓铭 on 16/9/3.
@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface ViewController : UIViewController
 
 
 @end

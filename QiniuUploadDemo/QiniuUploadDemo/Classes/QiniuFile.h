@@ -14,7 +14,7 @@
 
 
 
-@property ALAsset *asset;
+@property NSURL *assetURL;
 
 
 @property ALAssetRepresentation *assetRepresentation;
@@ -31,22 +31,14 @@
  */
 @property (copy, nonatomic) NSString *mimeType;
 
-@property (copy, nonatomic) NSString *path;
-
 @property (copy, nonatomic) NSData *rawData;
 
-
-/**
- *  initialize instance with file path.
- *  @param path file path
- */
-- (id)initWithPath:(NSString *)path;
 
 /**
  *  (only support image)initialize instance with binary data, and key name for it.
  *  @param theAsset the alasset for ios native resource
  */
-- (id)initWithAsset:(ALAsset *)asset;
+- (id)initWithAssetURL:(NSURL *)assetURL;
 
 - (id)initWithAssetRepresentation:(ALAssetRepresentation *)assetRepresentation;
 

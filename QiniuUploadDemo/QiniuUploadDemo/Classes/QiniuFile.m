@@ -11,18 +11,12 @@
 @implementation QiniuFile
 
 
-- (id)initWithPath:(NSString *)path
-{
-    if (self = [super init]) {
-        self.path = path;
-    }
-    return self;
-}
 
-- (id)initWithAsset:(ALAsset *)asset
+- (id)initWithAssetURL:(NSURL *)assetURL
 {
     if (self = [super init]) {
-        self.asset = asset;
+        self.mimeType = @"image/jpeg";
+        self.assetURL = assetURL;
     }
     return self;
 }
