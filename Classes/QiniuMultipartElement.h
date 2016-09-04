@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#if TARGET_OS_IOS
 #import <MobileCoreServices/UTType.h>
 #import "NSInputStream+POS.h"
+#endif
 
 #define kHeaderStringFormat @"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n"
 #define kHeaderDataFormat @"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\nContent-Type: %@\r\n\r\n"
@@ -34,7 +37,9 @@
 
 - (id)initWithHeaders:(NSDictionary *)headers path:(NSString *)path boundary:(NSString *)boundary;
 
+#if TARGET_OS_IOS
 - (id)initWithName:(NSString *)name filename:(NSString *)filename boundary:(NSString *)boundary asset:(ALAsset *)asset;
+#endif
 
 @end
 

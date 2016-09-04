@@ -113,6 +113,7 @@ static NSString * MIMETypeForExtension(NSString * extension) {
     return self;
 }
 
+#if TARGET_OS_IOS
 - (id)initWithName:(NSString *)name filename:(NSString *)filename boundary:(NSString *)boundary asset:(ALAsset *)asset
 {
     ALAssetRepresentation *rep = [asset defaultRepresentation];
@@ -129,7 +130,7 @@ static NSString * MIMETypeForExtension(NSString * extension) {
     [self updateLength];
     return self;
 }
-
+#endif
 
 - (NSData *)makeHeadersDataFromHeadersDict:(NSDictionary *)headers boundary:(NSString *)boundary
 {

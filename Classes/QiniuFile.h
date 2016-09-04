@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#if TARGET_OS_IOS
 #import <AssetsLibrary/AssetsLibrary.h>
+#endif
 
 @interface QiniuFile : NSObject
 
 
-
-
+#if TARGET_OS_IOS
 @property ALAsset *asset;
+#endif
 
 /**
  *  name of this file. It's could be nil.
@@ -38,11 +41,15 @@
  */
 - (id)initWithPath:(NSString *)path;
 
+
 /**
  *  initialize instance with binary data, and key name for it.
  *  @param theAsset the alasset for ios native resource
  */
+
+#if TARGET_OS_IOS
 - (id)initWithAsset:(ALAsset *)asset;
+#endif
 
 /**
  *  (only support image)initialize instance with binary data, and key name for it.

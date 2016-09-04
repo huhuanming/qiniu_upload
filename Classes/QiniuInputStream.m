@@ -71,11 +71,13 @@
     [self updateLength];
 }
 
+#if TARGET_OS_IOS
 - (void)addPartWithName:(NSString *)name asset:(ALAsset *)asset;
 {
     [self.parts addObject:[[QiniuMultipartElement alloc] initWithName:name filename:nil boundary:self.boundary asset:asset]];
     [self updateLength];
 }
+#endif
 
 - (void)addPartWithHeaders:(NSDictionary *)headers string:(NSString *)string
 {

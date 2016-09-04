@@ -91,9 +91,11 @@
                 [inputStream addPartWithName:@"file" data: file.rawData];
             }
             
+#if TARGET_OS_IOS
             if (file.asset) {
                 [inputStream addPartWithName:@"file" asset:file.asset];
             }
+#endif
             
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kQiniuUploadURL]];
             [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", [inputStream boundary]] forHTTPHeaderField:@"Content-Type"];

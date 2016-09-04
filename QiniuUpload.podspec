@@ -21,14 +21,21 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '7.0'
 
- # s.osx.deployment_target = '10.9'
+  s.osx.deployment_target = '10.9'
 
-  s.source       = { :git => "https://github.com/huhuanming/qiniu_upload.git", :tag => "2.0.0" }
+  s.source       = { :git => "https://github.com/huhuanming/qiniu_upload.git", :tag => "2.0.1" }
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files  = "Classes", "Classes/*.{h,m}"
+  
+  s.ios.source_files   = 'Classes/POSInputStreamLibrary/*.{h,m}'
+  
+  #s.osx.source_files   = ''
+
   s.exclude_files = "Classes/Exclude"
 
-  s.frameworks = 'Foundation', 'UIKit'
+  s.frameworks = 'Foundation'
+  s.ios.frameworks = 'UIKit'
+  s.osx.framework  = 'AppKit'
 
   s.requires_arc = true
 end
