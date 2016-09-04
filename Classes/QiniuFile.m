@@ -19,6 +19,7 @@
     return self;
 }
 
+#if TARGET_OS_IOS
 - (id)initWithAsset:(ALAsset *)asset
 {
     if (self = [super init]) {
@@ -26,6 +27,7 @@
     }
     return self;
 }
+#endif
 
 - (id)initWithFileData:(NSData *)theData
 {
