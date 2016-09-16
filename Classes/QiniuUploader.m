@@ -107,7 +107,7 @@
                 if(error) {
                     if (self.uploadOneFileFailed) {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            self.uploadOneFileFailed(i, [error copy]);
+                            self.uploadOneFileFailed(i, error);
                         });
                     }
                 } else {
@@ -121,11 +121,9 @@
                         }
                     } else {
                         if (self.uploadOneFileFailed) {
+                            error = [NSError errorWithDomain:kQiniuUploadURL code:httpResponse.statusCode userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString([NSString stringWithUTF8String:[data bytes]], @"")}];
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                self.uploadOneFileFailed(i, nil);
-                                #ifdef DEBUG
-                                    NSLog(@"%@", httpResponse);
-                                #endif
+                                self.uploadOneFileFailed(i, error);
                             });
                         }
                     }

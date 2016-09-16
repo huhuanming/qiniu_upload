@@ -129,8 +129,8 @@ UIAlertViewDelegate>{
         NSLog(@"complete");
         [alertView show];
     }];
-    [uploader setUploadOneFileFailed:^(NSInteger index, NSDictionary *error){
-        NSLog(@"%@",error);
+    [uploader setUploadOneFileFailed:^(NSInteger index, NSError * _Nullable error){
+        NSLog(@"error: %@",error);
     }];
     [uploader startUploadWithAccessToken:[[QiniuToken sharedQiniuToken] uploadToken]];
 }
@@ -168,8 +168,8 @@ UIAlertViewDelegate>{
         [alertView show];
     }];
     
-    [uploader setUploadOneFileFailed:^(NSInteger index, NSDictionary *error){
-        NSLog(@"%@",error);
+    [uploader setUploadOneFileFailed:^(NSInteger index, NSError * _Nullable error){
+        NSLog(@"error: %@",error);
     }];
     
     [uploader startUploadWithAccessToken:[[QiniuToken sharedQiniuToken] uploadToken]];
@@ -208,8 +208,8 @@ UIAlertViewDelegate>{
         [uploader setUploadAllFilesComplete:^(void){
             NSLog(@"complete");
         }];
-        [uploader setUploadOneFileFailed:^(NSInteger index, NSDictionary *error){
-            NSLog(@"%@",error);
+        [uploader setUploadOneFileFailed:^(NSInteger index, NSError * _Nullable error){
+            NSLog(@"error: %@", error);
         }];
         
         [uploader startUploadWithAccessToken:[[QiniuToken sharedQiniuToken] uploadToken]];
