@@ -187,11 +187,11 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend{
 
 
 + (NSString *)versionName {
-    return @"2.0.0";
+    return @"2.0.2";
 }
 
 + (NSInteger)version {
-    return 10;
+    return 12;
 }
 
 #ifdef DEBUG
