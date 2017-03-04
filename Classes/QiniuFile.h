@@ -34,6 +34,7 @@
 
 @property (copy, nonatomic) NSData *rawData;
 
+@property (copy, nonatomic) NSString *AccessToken;
 
 /**
  *  initialize instance with file path.

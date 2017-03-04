@@ -76,12 +76,19 @@
     for (int i = 0; i < self.files.count; i++) {
         NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
             QiniuFile *file = self.files[i];
+            
+            NSString *token;
+            if (file.AccessToken) {
+                token = file.AccessToken;
+            } else {
+                token = accessToken ?: [[QiniuToken sharedQiniuToken] uploadToken];
+            }
             QiniuInputStream *inputStream = [[QiniuInputStream alloc] init];
             if (file.key) {
                 [inputStream addPartWithName:@"key" string:file.key];
             }
             
-            [inputStream addPartWithName:@"token" string: accessToken ?: [[QiniuToken sharedQiniuToken] uploadToken]];
+            [inputStream addPartWithName:@"token" string: token];
 
             if (file.path) {
                 [inputStream addPartWithName:@"file" path: file.path];
