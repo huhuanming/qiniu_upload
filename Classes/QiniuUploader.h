@@ -47,7 +47,7 @@ typedef void (^UploadAllFilesCompleteBlock)(void);
 
 /**
  *  start upload files to qiniu cloud storage.
- *  @param AccessToken Qiniu AccessToken from your sever
+ *  @param theAccessToken Qiniu AccessToken from your sever
  *  @return Boolean if files were nil, it will return NO.
  */
 - (Boolean)startUploadWithAccessToken:(NSString * _Nonnull)theAccessToken;

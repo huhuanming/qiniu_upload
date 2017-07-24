@@ -7,64 +7,81 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8535AB9A1D7AC99A0096FFE5 /* QiniuInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535AB991D7AC99A0096FFE5 /* QiniuInputStream.m */; };
-		8535ABA01D7ACAE70096FFE5 /* QiniuMultipartElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535AB9F1D7ACAE70096FFE5 /* QiniuMultipartElement.m */; };
-		8535ABB71D7B13350096FFE5 /* ALAssetsLibrary+POS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABA31D7B13350096FFE5 /* ALAssetsLibrary+POS.m */; };
-		8535ABB81D7B13350096FFE5 /* NSInputStream+POS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABA51D7B13350096FFE5 /* NSInputStream+POS.m */; };
-		8535ABB91D7B13350096FFE5 /* POSAdjustedAssetReaderIOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABA71D7B13350096FFE5 /* POSAdjustedAssetReaderIOS7.m */; };
-		8535ABBA1D7B13350096FFE5 /* POSAdjustedAssetReaderIOS8.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABA91D7B13350096FFE5 /* POSAdjustedAssetReaderIOS8.m */; };
-		8535ABBB1D7B13350096FFE5 /* POSBlobInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABAD1D7B13350096FFE5 /* POSBlobInputStream.m */; };
-		8535ABBC1D7B13350096FFE5 /* POSBlobInputStreamAssetDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABAF1D7B13350096FFE5 /* POSBlobInputStreamAssetDataSource.m */; };
-		8535ABBD1D7B13350096FFE5 /* POSFastAssetReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABB21D7B13350096FFE5 /* POSFastAssetReader.m */; };
-		8535ABBE1D7B13350096FFE5 /* POSLocking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABB61D7B13350096FFE5 /* POSLocking.m */; };
-		8581022A1D7ABF1900B8FCB2 /* QiniuFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102211D7ABF1900B8FCB2 /* QiniuFile.m */; };
-		8581022B1D7ABF1900B8FCB2 /* QiniuFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102211D7ABF1900B8FCB2 /* QiniuFile.m */; };
-		8581022C1D7ABF1900B8FCB2 /* QiniuFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102211D7ABF1900B8FCB2 /* QiniuFile.m */; };
-		8581022D1D7ABF1900B8FCB2 /* QiniuToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102231D7ABF1900B8FCB2 /* QiniuToken.m */; };
-		8581022E1D7ABF1900B8FCB2 /* QiniuToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102231D7ABF1900B8FCB2 /* QiniuToken.m */; };
-		8581022F1D7ABF1900B8FCB2 /* QiniuToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102231D7ABF1900B8FCB2 /* QiniuToken.m */; };
-		858102301D7ABF1900B8FCB2 /* QiniuUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102251D7ABF1900B8FCB2 /* QiniuUploader.m */; };
-		858102311D7ABF1900B8FCB2 /* QiniuUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102251D7ABF1900B8FCB2 /* QiniuUploader.m */; };
-		858102321D7ABF1900B8FCB2 /* QiniuUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102251D7ABF1900B8FCB2 /* QiniuUploader.m */; };
-		858102331D7ABF1900B8FCB2 /* QUMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102271D7ABF1900B8FCB2 /* QUMBase64.m */; };
-		858102341D7ABF1900B8FCB2 /* QUMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102271D7ABF1900B8FCB2 /* QUMBase64.m */; };
-		858102351D7ABF1900B8FCB2 /* QUMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102271D7ABF1900B8FCB2 /* QUMBase64.m */; };
+		16CDB46F1DEE764F0038C766 /* Qiniu.h in Headers */ = {isa = PBXBuildFile; fileRef = 16CDB46D1DEE764F0038C766 /* Qiniu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4781DEE766B0038C766 /* QiniuFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102211D7ABF1900B8FCB2 /* QiniuFile.m */; };
+		16CDB4791DEE766B0038C766 /* QiniuToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102231D7ABF1900B8FCB2 /* QiniuToken.m */; };
+		16CDB47A1DEE766B0038C766 /* QiniuMultipartElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535AB9F1D7ACAE70096FFE5 /* QiniuMultipartElement.m */; };
+		16CDB47B1DEE766B0038C766 /* QiniuInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535AB991D7AC99A0096FFE5 /* QiniuInputStream.m */; };
+		16CDB47C1DEE766B0038C766 /* QiniuUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102251D7ABF1900B8FCB2 /* QiniuUploader.m */; };
+		16CDB47D1DEE766B0038C766 /* QUMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 858102271D7ABF1900B8FCB2 /* QUMBase64.m */; };
+		16CDB47E1DEE76750038C766 /* ALAssetsLibrary+POS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABA31D7B13350096FFE5 /* ALAssetsLibrary+POS.m */; };
+		16CDB47F1DEE76750038C766 /* NSInputStream+POS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABA51D7B13350096FFE5 /* NSInputStream+POS.m */; };
+		16CDB4801DEE76750038C766 /* POSAdjustedAssetReaderIOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABA71D7B13350096FFE5 /* POSAdjustedAssetReaderIOS7.m */; };
+		16CDB4811DEE76750038C766 /* POSAdjustedAssetReaderIOS8.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABA91D7B13350096FFE5 /* POSAdjustedAssetReaderIOS8.m */; };
+		16CDB4821DEE76750038C766 /* POSBlobInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABAD1D7B13350096FFE5 /* POSBlobInputStream.m */; };
+		16CDB4831DEE76750038C766 /* POSBlobInputStreamAssetDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABAF1D7B13350096FFE5 /* POSBlobInputStreamAssetDataSource.m */; };
+		16CDB4841DEE76750038C766 /* POSFastAssetReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABB21D7B13350096FFE5 /* POSFastAssetReader.m */; };
+		16CDB4851DEE76750038C766 /* POSLocking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8535ABB61D7B13350096FFE5 /* POSLocking.m */; };
+		16CDB4861DEE76920038C766 /* QUMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 858102281D7ABF1900B8FCB2 /* QUMDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4871DEE76A40038C766 /* ALAssetsLibrary+POS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABA21D7B13350096FFE5 /* ALAssetsLibrary+POS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4881DEE76A40038C766 /* NSInputStream+POS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABA41D7B13350096FFE5 /* NSInputStream+POS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4891DEE76A40038C766 /* POSAdjustedAssetReaderIOS7.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABA61D7B13350096FFE5 /* POSAdjustedAssetReaderIOS7.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB48A1DEE76A40038C766 /* POSAdjustedAssetReaderIOS8.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABA81D7B13350096FFE5 /* POSAdjustedAssetReaderIOS8.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB48B1DEE76A40038C766 /* POSAssetReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABAA1D7B13350096FFE5 /* POSAssetReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB48C1DEE76A40038C766 /* POSBlobInputStream-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABAB1D7B13350096FFE5 /* POSBlobInputStream-Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB48D1DEE76A40038C766 /* POSBlobInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABAC1D7B13350096FFE5 /* POSBlobInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB48E1DEE76A40038C766 /* POSBlobInputStreamAssetDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABAE1D7B13350096FFE5 /* POSBlobInputStreamAssetDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB48F1DEE76A40038C766 /* POSBlobInputStreamDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABB01D7B13350096FFE5 /* POSBlobInputStreamDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4901DEE76A40038C766 /* POSFastAssetReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABB11D7B13350096FFE5 /* POSFastAssetReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4911DEE76A40038C766 /* POSInputStreamLibrary-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABB31D7B13350096FFE5 /* POSInputStreamLibrary-Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4921DEE76A40038C766 /* POSInputStreamLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABB41D7B13350096FFE5 /* POSInputStreamLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4931DEE76A40038C766 /* POSLocking.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535ABB51D7B13350096FFE5 /* POSLocking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4941DEE76A40038C766 /* QiniuFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 858102201D7ABF1900B8FCB2 /* QiniuFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4951DEE76A40038C766 /* QiniuToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 858102221D7ABF1900B8FCB2 /* QiniuToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4961DEE76A40038C766 /* QiniuMultipartElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535AB9E1D7ACAE70096FFE5 /* QiniuMultipartElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4971DEE76A40038C766 /* QiniuInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 8535AB981D7AC99A0096FFE5 /* QiniuInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4981DEE76A40038C766 /* QiniuUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = 858102241D7ABF1900B8FCB2 /* QiniuUploader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB4991DEE76A40038C766 /* QUMBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 858102261D7ABF1900B8FCB2 /* QUMBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16CDB49A1DEE775E0038C766 /* Qiniu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CDB46B1DEE764F0038C766 /* Qiniu.framework */; };
+		16CDB49B1DEE775E0038C766 /* Qiniu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 16CDB46B1DEE764F0038C766 /* Qiniu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		858102361D7ABF1900B8FCB2 /* version.json in Resources */ = {isa = PBXBuildFile; fileRef = 858102291D7ABF1900B8FCB2 /* version.json */; };
-		858102371D7ABF1900B8FCB2 /* version.json in Resources */ = {isa = PBXBuildFile; fileRef = 858102291D7ABF1900B8FCB2 /* version.json */; };
-		858102381D7ABF1900B8FCB2 /* version.json in Resources */ = {isa = PBXBuildFile; fileRef = 858102291D7ABF1900B8FCB2 /* version.json */; };
 		85DD383D1D7ABA3F006A77C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD383C1D7ABA3F006A77C2 /* main.m */; };
 		85DD38401D7ABA3F006A77C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD383F1D7ABA3F006A77C2 /* AppDelegate.m */; };
 		85DD38431D7ABA3F006A77C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD38421D7ABA3F006A77C2 /* ViewController.m */; };
 		85DD38481D7ABA3F006A77C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85DD38471D7ABA3F006A77C2 /* Assets.xcassets */; };
 		85DD384B1D7ABA3F006A77C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85DD38491D7ABA3F006A77C2 /* LaunchScreen.storyboard */; };
-		85DD38561D7ABA3F006A77C2 /* QiniuUploadDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD38551D7ABA3F006A77C2 /* QiniuUploadDemoTests.m */; };
-		85DD38611D7ABA3F006A77C2 /* QiniuUploadDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD38601D7ABA3F006A77C2 /* QiniuUploadDemoUITests.m */; };
 		85DD38901D7ABC98006A77C2 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388E1D7ABC98006A77C2 /* test.jpg */; };
-		85DD38911D7ABC98006A77C2 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388E1D7ABC98006A77C2 /* test.jpg */; };
-		85DD38921D7ABC98006A77C2 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388E1D7ABC98006A77C2 /* test.jpg */; };
 		85DD38931D7ABC98006A77C2 /* ふつうのdisco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */; };
-		85DD38941D7ABC98006A77C2 /* ふつうのdisco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */; };
-		85DD38951D7ABC98006A77C2 /* ふつうのdisco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		85DD38521D7ABA3F006A77C2 /* PBXContainerItemProxy */ = {
+		16CDB49C1DEE775E0038C766 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 85DD38301D7ABA3F006A77C2 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 85DD38371D7ABA3F006A77C2;
-			remoteInfo = QiniuUploadDemo;
-		};
-		85DD385D1D7ABA3F006A77C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 85DD38301D7ABA3F006A77C2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 85DD38371D7ABA3F006A77C2;
-			remoteInfo = QiniuUploadDemo;
+			remoteGlobalIDString = 16CDB46A1DEE764F0038C766;
+			remoteInfo = Qiniu;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		16CDB49E1DEE775E0038C766 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				16CDB49B1DEE775E0038C766 /* Qiniu.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		16CDB46B1DEE764F0038C766 /* Qiniu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Qiniu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16CDB46D1DEE764F0038C766 /* Qiniu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Qiniu.h; sourceTree = "<group>"; };
+		16CDB46E1DEE764F0038C766 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8535AB981D7AC99A0096FFE5 /* QiniuInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuInputStream.h; sourceTree = "<group>"; };
 		8535AB991D7AC99A0096FFE5 /* QiniuInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiniuInputStream.m; sourceTree = "<group>"; };
 		8535AB9E1D7ACAE70096FFE5 /* QiniuMultipartElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuMultipartElement.h; sourceTree = "<group>"; };
@@ -109,41 +126,38 @@
 		85DD38471D7ABA3F006A77C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85DD384A1D7ABA3F006A77C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85DD384C1D7ABA3F006A77C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85DD38511D7ABA3F006A77C2 /* QiniuUploadDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QiniuUploadDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85DD38551D7ABA3F006A77C2 /* QiniuUploadDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QiniuUploadDemoTests.m; sourceTree = "<group>"; };
-		85DD38571D7ABA3F006A77C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85DD385C1D7ABA3F006A77C2 /* QiniuUploadDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QiniuUploadDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85DD38601D7ABA3F006A77C2 /* QiniuUploadDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QiniuUploadDemoUITests.m; sourceTree = "<group>"; };
-		85DD38621D7ABA3F006A77C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85DD388E1D7ABC98006A77C2 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ふつうのdisco.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		16CDB4671DEE764F0038C766 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		85DD38351D7ABA3F006A77C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85DD384E1D7ABA3F006A77C2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85DD38591D7ABA3F006A77C2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				16CDB49A1DEE775E0038C766 /* Qiniu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16CDB46C1DEE764F0038C766 /* Qiniu */ = {
+			isa = PBXGroup;
+			children = (
+				16CDB46D1DEE764F0038C766 /* Qiniu.h */,
+				16CDB46E1DEE764F0038C766 /* Info.plist */,
+			);
+			path = Qiniu;
+			sourceTree = "<group>";
+		};
 		8535ABA11D7B13350096FFE5 /* POSInputStreamLibrary */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,15 +206,15 @@
 				858102291D7ABF1900B8FCB2 /* version.json */,
 			);
 			name = Classes;
-			path = ../../Classes;
+			path = ../Classes;
 			sourceTree = "<group>";
 		};
 		85DD382F1D7ABA3F006A77C2 = {
 			isa = PBXGroup;
 			children = (
+				8581021F1D7ABF1900B8FCB2 /* Classes */,
 				85DD383A1D7ABA3F006A77C2 /* QiniuUploadDemo */,
-				85DD38541D7ABA3F006A77C2 /* QiniuUploadDemoTests */,
-				85DD385F1D7ABA3F006A77C2 /* QiniuUploadDemoUITests */,
+				16CDB46C1DEE764F0038C766 /* Qiniu */,
 				85DD38391D7ABA3F006A77C2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -209,8 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				85DD38381D7ABA3F006A77C2 /* QiniuUploadDemo.app */,
-				85DD38511D7ABA3F006A77C2 /* QiniuUploadDemoTests.xctest */,
-				85DD385C1D7ABA3F006A77C2 /* QiniuUploadDemoUITests.xctest */,
+				16CDB46B1DEE764F0038C766 /* Qiniu.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,7 +231,6 @@
 		85DD383A1D7ABA3F006A77C2 /* QiniuUploadDemo */ = {
 			isa = PBXGroup;
 			children = (
-				8581021F1D7ABF1900B8FCB2 /* Classes */,
 				85DD388E1D7ABC98006A77C2 /* test.jpg */,
 				85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */,
 				85DD383E1D7ABA3F006A77C2 /* AppDelegate.h */,
@@ -241,27 +253,58 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		85DD38541D7ABA3F006A77C2 /* QiniuUploadDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				85DD38551D7ABA3F006A77C2 /* QiniuUploadDemoTests.m */,
-				85DD38571D7ABA3F006A77C2 /* Info.plist */,
-			);
-			path = QiniuUploadDemoTests;
-			sourceTree = "<group>";
-		};
-		85DD385F1D7ABA3F006A77C2 /* QiniuUploadDemoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				85DD38601D7ABA3F006A77C2 /* QiniuUploadDemoUITests.m */,
-				85DD38621D7ABA3F006A77C2 /* Info.plist */,
-			);
-			path = QiniuUploadDemoUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		16CDB4681DEE764F0038C766 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16CDB4971DEE76A40038C766 /* QiniuInputStream.h in Headers */,
+				16CDB48A1DEE76A40038C766 /* POSAdjustedAssetReaderIOS8.h in Headers */,
+				16CDB4891DEE76A40038C766 /* POSAdjustedAssetReaderIOS7.h in Headers */,
+				16CDB46F1DEE764F0038C766 /* Qiniu.h in Headers */,
+				16CDB48F1DEE76A40038C766 /* POSBlobInputStreamDataSource.h in Headers */,
+				16CDB4931DEE76A40038C766 /* POSLocking.h in Headers */,
+				16CDB4951DEE76A40038C766 /* QiniuToken.h in Headers */,
+				16CDB4921DEE76A40038C766 /* POSInputStreamLibrary.h in Headers */,
+				16CDB4961DEE76A40038C766 /* QiniuMultipartElement.h in Headers */,
+				16CDB4871DEE76A40038C766 /* ALAssetsLibrary+POS.h in Headers */,
+				16CDB4941DEE76A40038C766 /* QiniuFile.h in Headers */,
+				16CDB4901DEE76A40038C766 /* POSFastAssetReader.h in Headers */,
+				16CDB4861DEE76920038C766 /* QUMDefines.h in Headers */,
+				16CDB48E1DEE76A40038C766 /* POSBlobInputStreamAssetDataSource.h in Headers */,
+				16CDB4881DEE76A40038C766 /* NSInputStream+POS.h in Headers */,
+				16CDB48C1DEE76A40038C766 /* POSBlobInputStream-Prefix.pch in Headers */,
+				16CDB4911DEE76A40038C766 /* POSInputStreamLibrary-Prefix.pch in Headers */,
+				16CDB48D1DEE76A40038C766 /* POSBlobInputStream.h in Headers */,
+				16CDB4991DEE76A40038C766 /* QUMBase64.h in Headers */,
+				16CDB48B1DEE76A40038C766 /* POSAssetReader.h in Headers */,
+				16CDB4981DEE76A40038C766 /* QiniuUploader.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		16CDB46A1DEE764F0038C766 /* Qiniu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16CDB4741DEE764F0038C766 /* Build configuration list for PBXNativeTarget "Qiniu" */;
+			buildPhases = (
+				16CDB4661DEE764F0038C766 /* Sources */,
+				16CDB4671DEE764F0038C766 /* Frameworks */,
+				16CDB4681DEE764F0038C766 /* Headers */,
+				16CDB4691DEE764F0038C766 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Qiniu;
+			productName = Qiniu;
+			productReference = 16CDB46B1DEE764F0038C766 /* Qiniu.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		85DD38371D7ABA3F006A77C2 /* QiniuUploadDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85DD38651D7ABA3F006A77C2 /* Build configuration list for PBXNativeTarget "QiniuUploadDemo" */;
@@ -269,51 +312,17 @@
 				85DD38341D7ABA3F006A77C2 /* Sources */,
 				85DD38351D7ABA3F006A77C2 /* Frameworks */,
 				85DD38361D7ABA3F006A77C2 /* Resources */,
+				16CDB49E1DEE775E0038C766 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				16CDB49D1DEE775E0038C766 /* PBXTargetDependency */,
 			);
 			name = QiniuUploadDemo;
 			productName = QiniuUploadDemo;
 			productReference = 85DD38381D7ABA3F006A77C2 /* QiniuUploadDemo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		85DD38501D7ABA3F006A77C2 /* QiniuUploadDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 85DD38681D7ABA3F006A77C2 /* Build configuration list for PBXNativeTarget "QiniuUploadDemoTests" */;
-			buildPhases = (
-				85DD384D1D7ABA3F006A77C2 /* Sources */,
-				85DD384E1D7ABA3F006A77C2 /* Frameworks */,
-				85DD384F1D7ABA3F006A77C2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				85DD38531D7ABA3F006A77C2 /* PBXTargetDependency */,
-			);
-			name = QiniuUploadDemoTests;
-			productName = QiniuUploadDemoTests;
-			productReference = 85DD38511D7ABA3F006A77C2 /* QiniuUploadDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		85DD385B1D7ABA3F006A77C2 /* QiniuUploadDemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 85DD386B1D7ABA3F006A77C2 /* Build configuration list for PBXNativeTarget "QiniuUploadDemoUITests" */;
-			buildPhases = (
-				85DD38581D7ABA3F006A77C2 /* Sources */,
-				85DD38591D7ABA3F006A77C2 /* Frameworks */,
-				85DD385A1D7ABA3F006A77C2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				85DD385E1D7ABA3F006A77C2 /* PBXTargetDependency */,
-			);
-			name = QiniuUploadDemoUITests;
-			productName = QiniuUploadDemoUITests;
-			productReference = 85DD385C1D7ABA3F006A77C2 /* QiniuUploadDemoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -324,19 +333,14 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "胡 桓铭";
 				TargetAttributes = {
+					16CDB46A1DEE764F0038C766 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = NR6298RRHY;
+						ProvisioningStyle = Automatic;
+					};
 					85DD38371D7ABA3F006A77C2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 5M34M6CU7U;
-					};
-					85DD38501D7ABA3F006A77C2 = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 5M34M6CU7U;
-						TestTargetID = 85DD38371D7ABA3F006A77C2;
-					};
-					85DD385B1D7ABA3F006A77C2 = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 5M34M6CU7U;
-						TestTargetID = 85DD38371D7ABA3F006A77C2;
+						DevelopmentTeam = NR6298RRHY;
 					};
 				};
 			};
@@ -354,13 +358,19 @@
 			projectRoot = "";
 			targets = (
 				85DD38371D7ABA3F006A77C2 /* QiniuUploadDemo */,
-				85DD38501D7ABA3F006A77C2 /* QiniuUploadDemoTests */,
-				85DD385B1D7ABA3F006A77C2 /* QiniuUploadDemoUITests */,
+				16CDB46A1DEE764F0038C766 /* Qiniu */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		16CDB4691DEE764F0038C766 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		85DD38361D7ABA3F006A77C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,89 +383,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		85DD384F1D7ABA3F006A77C2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85DD38941D7ABC98006A77C2 /* ふつうのdisco.mp3 in Resources */,
-				858102371D7ABF1900B8FCB2 /* version.json in Resources */,
-				85DD38911D7ABC98006A77C2 /* test.jpg in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85DD385A1D7ABA3F006A77C2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85DD38951D7ABC98006A77C2 /* ふつうのdisco.mp3 in Resources */,
-				858102381D7ABF1900B8FCB2 /* version.json in Resources */,
-				85DD38921D7ABC98006A77C2 /* test.jpg in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		16CDB4661DEE764F0038C766 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16CDB4851DEE76750038C766 /* POSLocking.m in Sources */,
+				16CDB47F1DEE76750038C766 /* NSInputStream+POS.m in Sources */,
+				16CDB47D1DEE766B0038C766 /* QUMBase64.m in Sources */,
+				16CDB4831DEE76750038C766 /* POSBlobInputStreamAssetDataSource.m in Sources */,
+				16CDB4791DEE766B0038C766 /* QiniuToken.m in Sources */,
+				16CDB4811DEE76750038C766 /* POSAdjustedAssetReaderIOS8.m in Sources */,
+				16CDB47A1DEE766B0038C766 /* QiniuMultipartElement.m in Sources */,
+				16CDB4821DEE76750038C766 /* POSBlobInputStream.m in Sources */,
+				16CDB4781DEE766B0038C766 /* QiniuFile.m in Sources */,
+				16CDB4801DEE76750038C766 /* POSAdjustedAssetReaderIOS7.m in Sources */,
+				16CDB47B1DEE766B0038C766 /* QiniuInputStream.m in Sources */,
+				16CDB47E1DEE76750038C766 /* ALAssetsLibrary+POS.m in Sources */,
+				16CDB4841DEE76750038C766 /* POSFastAssetReader.m in Sources */,
+				16CDB47C1DEE766B0038C766 /* QiniuUploader.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		85DD38341D7ABA3F006A77C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				858102301D7ABF1900B8FCB2 /* QiniuUploader.m in Sources */,
-				8535ABB81D7B13350096FFE5 /* NSInputStream+POS.m in Sources */,
-				8535ABBD1D7B13350096FFE5 /* POSFastAssetReader.m in Sources */,
-				8535ABB91D7B13350096FFE5 /* POSAdjustedAssetReaderIOS7.m in Sources */,
-				8535ABA01D7ACAE70096FFE5 /* QiniuMultipartElement.m in Sources */,
-				8535ABB71D7B13350096FFE5 /* ALAssetsLibrary+POS.m in Sources */,
-				8535ABBC1D7B13350096FFE5 /* POSBlobInputStreamAssetDataSource.m in Sources */,
-				8535ABBA1D7B13350096FFE5 /* POSAdjustedAssetReaderIOS8.m in Sources */,
-				858102331D7ABF1900B8FCB2 /* QUMBase64.m in Sources */,
-				8581022A1D7ABF1900B8FCB2 /* QiniuFile.m in Sources */,
 				85DD38431D7ABA3F006A77C2 /* ViewController.m in Sources */,
-				8581022D1D7ABF1900B8FCB2 /* QiniuToken.m in Sources */,
-				8535ABBB1D7B13350096FFE5 /* POSBlobInputStream.m in Sources */,
 				85DD38401D7ABA3F006A77C2 /* AppDelegate.m in Sources */,
 				85DD383D1D7ABA3F006A77C2 /* main.m in Sources */,
-				8535AB9A1D7AC99A0096FFE5 /* QiniuInputStream.m in Sources */,
-				8535ABBE1D7B13350096FFE5 /* POSLocking.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85DD384D1D7ABA3F006A77C2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				858102311D7ABF1900B8FCB2 /* QiniuUploader.m in Sources */,
-				858102341D7ABF1900B8FCB2 /* QUMBase64.m in Sources */,
-				8581022B1D7ABF1900B8FCB2 /* QiniuFile.m in Sources */,
-				8581022E1D7ABF1900B8FCB2 /* QiniuToken.m in Sources */,
-				85DD38561D7ABA3F006A77C2 /* QiniuUploadDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85DD38581D7ABA3F006A77C2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				858102321D7ABF1900B8FCB2 /* QiniuUploader.m in Sources */,
-				858102351D7ABF1900B8FCB2 /* QUMBase64.m in Sources */,
-				8581022C1D7ABF1900B8FCB2 /* QiniuFile.m in Sources */,
-				8581022F1D7ABF1900B8FCB2 /* QiniuToken.m in Sources */,
-				85DD38611D7ABA3F006A77C2 /* QiniuUploadDemoUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		85DD38531D7ABA3F006A77C2 /* PBXTargetDependency */ = {
+		16CDB49D1DEE775E0038C766 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 85DD38371D7ABA3F006A77C2 /* QiniuUploadDemo */;
-			targetProxy = 85DD38521D7ABA3F006A77C2 /* PBXContainerItemProxy */;
-		};
-		85DD385E1D7ABA3F006A77C2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 85DD38371D7ABA3F006A77C2 /* QiniuUploadDemo */;
-			targetProxy = 85DD385D1D7ABA3F006A77C2 /* PBXContainerItemProxy */;
+			target = 16CDB46A1DEE764F0038C766 /* Qiniu */;
+			targetProxy = 16CDB49C1DEE775E0038C766 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -471,6 +439,59 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		16CDB4751DEE764F0038C766 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NR6298RRHY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Qiniu/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SelfStudio.Qiniu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		16CDB4761DEE764F0038C766 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NR6298RRHY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Qiniu/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SelfStudio.Qiniu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		85DD38631D7ABA3F006A77C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -563,7 +584,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5M34M6CU7U;
+				DEVELOPMENT_TEAM = NR6298RRHY;
 				INFOPLIST_FILE = QiniuUploadDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -576,7 +597,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5M34M6CU7U;
+				DEVELOPMENT_TEAM = NR6298RRHY;
 				INFOPLIST_FILE = QiniuUploadDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -585,55 +606,17 @@
 			};
 			name = Release;
 		};
-		85DD38691D7ABA3F006A77C2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QiniuUploadDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "zach-hu.QiniuUploadDemoTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QiniuUploadDemo.app/QiniuUploadDemo";
-			};
-			name = Debug;
-		};
-		85DD386A1D7ABA3F006A77C2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QiniuUploadDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "zach-hu.QiniuUploadDemoTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QiniuUploadDemo.app/QiniuUploadDemo";
-			};
-			name = Release;
-		};
-		85DD386C1D7ABA3F006A77C2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = QiniuUploadDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "zach-hu.QiniuUploadDemoUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = QiniuUploadDemo;
-			};
-			name = Debug;
-		};
-		85DD386D1D7ABA3F006A77C2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = QiniuUploadDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "zach-hu.QiniuUploadDemoUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = QiniuUploadDemo;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		16CDB4741DEE764F0038C766 /* Build configuration list for PBXNativeTarget "Qiniu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16CDB4751DEE764F0038C766 /* Debug */,
+				16CDB4761DEE764F0038C766 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		85DD38331D7ABA3F006A77C2 /* Build configuration list for PBXProject "QiniuUploadDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -648,24 +631,6 @@
 			buildConfigurations = (
 				85DD38661D7ABA3F006A77C2 /* Debug */,
 				85DD38671D7ABA3F006A77C2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		85DD38681D7ABA3F006A77C2 /* Build configuration list for PBXNativeTarget "QiniuUploadDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				85DD38691D7ABA3F006A77C2 /* Debug */,
-				85DD386A1D7ABA3F006A77C2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		85DD386B1D7ABA3F006A77C2 /* Build configuration list for PBXNativeTarget "QiniuUploadDemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				85DD386C1D7ABA3F006A77C2 /* Debug */,
-				85DD386D1D7ABA3F006A77C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

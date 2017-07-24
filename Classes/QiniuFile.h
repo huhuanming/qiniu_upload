@@ -61,7 +61,7 @@
 /**
  *  initialize instance with binary data.
  *  @param theData binary data
- *  @param key name of this binary data
+ *  @param theKey name of this binary data
  */
 - (id)initWithFileData:(NSData *)theData withKey:(NSString*)theKey;
 

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "QiniuUploader.h"
+@import Qiniu;
 
 @interface ViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,
 UIAlertViewDelegate>{
