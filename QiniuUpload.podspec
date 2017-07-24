@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "QiniuUpload"
-  s.version      = "2.0.2"
+  s.version      = "2.0.3"
   s.summary      = "支持批量上传的七牛上传sdk，音频、视频、图片都是支持滴"
 
   s.description  = <<-DESC
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.osx.deployment_target = '10.9'
 
-  s.source       = { :git => "https://github.com/huhuanming/qiniu_upload.git", :tag => "2.0.2" }
+  s.source       = { :git => "https://github.com/huhuanming/qiniu_upload.git", :tag => "2.0.3" }
 
   s.source_files  = "Classes", "Classes/*.{h,m}"
   

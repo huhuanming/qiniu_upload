@@ -187,7 +187,7 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend{
 
 
 + (NSString *)versionName {
-    return @"2.0.2";
+    return @"2.0.3";
 }
 
 + (NSInteger)version {
