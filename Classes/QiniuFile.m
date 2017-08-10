@@ -10,7 +10,6 @@
 
 @implementation QiniuFile
 
-
 - (id)initWithPath:(NSString *)path
 {
     if (self = [super init]) {

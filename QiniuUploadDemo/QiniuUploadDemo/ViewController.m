@@ -109,12 +109,10 @@ UIAlertViewDelegate>{
     
     //startUpload
     uploader = [[QiniuUploader alloc] init];
-    [uploader addFile:file];
-    [uploader addFile:file];
-    [uploader addFile:file];
-    
-    [uploader setUploadOneFileSucceeded:^(NSInteger index, NSString *key, NSDictionary *info){
-        NSLog(@"index: %ld key: %@ info: %@",(long)index, key, info);
+    [uploader setFiles:@[file, file, file]];
+
+    [uploader setUploadOneFileSucceeded:^(NSInteger index, NSDictionary *info){
+        NSLog(@"index: %ld info: %@",(long)index, info);
     }];
     
     [uploader setUploadOneFileProgress:^(NSInteger index, NSProgress *process){
@@ -147,13 +145,10 @@ UIAlertViewDelegate>{
     QiniuFile *file = [[QiniuFile alloc] initWithPath:path];
     //startUpload
     uploader = [[QiniuUploader alloc] init];
-    [uploader addFile:file];
-    [uploader addFile:file];
-    [uploader addFile:file];
-    [uploader addFile:file];
+    uploader.files = @[file, file, file, file];
     
-    [uploader setUploadOneFileSucceeded:^(NSInteger index, NSString *key, NSDictionary *info){
-        NSLog(@"index: %ld key: %@ info: %@",(long)index, key, info);
+    [uploader setUploadOneFileSucceeded:^(NSInteger index, NSDictionary *info){
+        NSLog(@"index: %ld info: %@",(long)index, info);
     }];
     
     [uploader setUploadOneFileProgress:^(NSInteger index, NSProgress *process){
@@ -195,10 +190,10 @@ UIAlertViewDelegate>{
         uploader = [[QiniuUploader alloc] init];
         
         QiniuFile *file = [[QiniuFile alloc] initWithAsset:asset];
-        [uploader addFile:file];
+        uploader.files = @[file];
         
-        [uploader setUploadOneFileSucceeded:^(NSInteger index, NSString *key, NSDictionary *info){
-            NSLog(@"index: %ld key: %@ info: %@",(long)index, key, info);
+        [uploader setUploadOneFileSucceeded:^(NSInteger index, NSDictionary *info){
+            NSLog(@"index: %ld info: %@",(long)index, info);
         }];
         
         [uploader setUploadOneFileProgress:^(NSInteger index,NSProgress *process){
