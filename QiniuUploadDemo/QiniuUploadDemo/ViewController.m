@@ -108,16 +108,15 @@ UIAlertViewDelegate>{
     QiniuFile *file = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(imageView.image, 1.0f)];
     
     //startUpload
-    uploader = [[QiniuUploader alloc] init];
+    uploader = [QiniuUploader sharedUploader];
     [uploader setFiles:@[file, file, file]];
 
     [uploader setUploadOneFileSucceeded:^(NSInteger index, NSDictionary *info){
         NSLog(@"index: %ld info: %@",(long)index, info);
     }];
     
-    [uploader setUploadOneFileProgress:^(NSInteger index, NSProgress *process){
-        NSLog(@"index:%ld percent:%@",(long)index, process);
-        
+    [uploader setUploadOneFileProgress:^(NSInteger index, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend){
+        NSLog(@"index:%ld percent:%f",(long)index, totalBytesSent * 1.0 / totalBytesExpectedToSend);
     }];
     
     
@@ -144,16 +143,15 @@ UIAlertViewDelegate>{
     NSString *path = [NSString stringWithFormat:@"%@/%@",[NSBundle mainBundle].resourcePath,@"ふつうのdisco.mp3"];
     QiniuFile *file = [[QiniuFile alloc] initWithPath:path];
     //startUpload
-    uploader = [[QiniuUploader alloc] init];
+    uploader = [QiniuUploader sharedUploader];
     uploader.files = @[file, file, file, file];
     
     [uploader setUploadOneFileSucceeded:^(NSInteger index, NSDictionary *info){
         NSLog(@"index: %ld info: %@",(long)index, info);
     }];
     
-    [uploader setUploadOneFileProgress:^(NSInteger index, NSProgress *process){
-        NSLog(@"index:%ld percent:%@",(long)index, process);
-        
+    [uploader setUploadOneFileProgress:^(NSInteger index, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend){
+        NSLog(@"index:%ld percent:%f",(long)index, totalBytesSent * 1.0 / totalBytesExpectedToSend);
     }];
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Audio" message:@"one Uploaded" delegate:self cancelButtonTitle:@"Okay.." otherButtonTitles:nil];
@@ -187,7 +185,7 @@ UIAlertViewDelegate>{
             return;
         }
         
-        uploader = [[QiniuUploader alloc] init];
+        uploader = [QiniuUploader sharedUploader];
         
         QiniuFile *file = [[QiniuFile alloc] initWithAsset:asset];
         uploader.files = @[file];
@@ -196,8 +194,8 @@ UIAlertViewDelegate>{
             NSLog(@"index: %ld info: %@",(long)index, info);
         }];
         
-        [uploader setUploadOneFileProgress:^(NSInteger index,NSProgress *process){
-            NSLog(@"index:%ld percent:%@",(long)index, process);
+        [uploader setUploadOneFileProgress:^(NSInteger index, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend){
+            NSLog(@"index:%ld percent:%f",(long)index, totalBytesSent * 1.0 / totalBytesExpectedToSend);
         }];
         
         [uploader setUploadAllFilesComplete:^(void){

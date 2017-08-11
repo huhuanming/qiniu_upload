@@ -17,20 +17,18 @@
     NSMutableArray *operations;
     NSMutableDictionary *taskRefs;
     __weak NSURLSessionTask *currentTask;
+    NSURLSession *defaultSession;
 }
 
 - (id)init
-{
-    return [self initWithToken];
-}
-
-- (id)initWithToken
 {
     if (self = [super init]) {
         self.files = [[NSMutableArray alloc] init];
         fileQueue = [[NSMutableArray alloc] init];
         operations = [[NSMutableArray alloc] init];
         taskRefs = [[NSMutableDictionary alloc] init];
+        
+        defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate: self delegateQueue: nil];
         self.isRunning = NO;
     }
     #ifdef DEBUG
@@ -39,14 +37,15 @@
     return self;
 }
 
-- (void)addFile:(QiniuFile *)file
++(id)sharedUploader
 {
-//    [self.files addObject:file];
-}
-
-- (void)addFiles:(NSArray *)theFiles
-{
-//    [self.files addObjectsFromArray:theFiles];
+    static QiniuUploader *uploader;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if(uploader == nil)
+            uploader = [[QiniuUploader alloc] init];
+    });
+    return uploader;
 }
 
 - (Boolean)startUploadWithAccessToken:(NSString *)theAccessToken
@@ -60,6 +59,7 @@
     if (self.files.count == 0) {
         return false;
     }
+    self.isRunning = YES;
     [self createFileQueue];
     [self uploadQueue];
     return true;
@@ -101,9 +101,6 @@
 
 - (void)uploadFile:(NSInteger)fileIndex UUID:(NSString *)uuid
 {
-    __weak typeof(self) weakSelf = self;
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate: weakSelf delegateQueue: nil];
-    
     
     QiniuFile *file = self.files[fileIndex];
     
@@ -134,7 +131,8 @@
     [request setHTTPBodyStream:inputStream];
     [request setHTTPMethod:@"POST"];
     
-    NSURLSessionTask * uploadTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    __weak typeof(self) weakSelf = self;
+    NSURLSessionTask * uploadTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if(error) {
             if (weakSelf.uploadOneFileFailed) {
@@ -182,11 +180,15 @@
     if (indexFile) {
         [self uploadFile:indexFile.index UUID:indexFile.uuid];
     } else {
+        __weak typeof(self) weakSelf = self;
         @synchronized (taskRefs) {
-            if (taskRefs.count == 0 && self.uploadAllFilesComplete) {
+            if (taskRefs.count == 0 && weakSelf.uploadAllFilesComplete) {
+
                 [fileQueue removeAllObjects];
+                weakSelf.isRunning = NO;
+
                 dispatch_async(dispatch_get_main_queue(), ^{
-                 self.uploadAllFilesComplete();
+                  weakSelf.uploadAllFilesComplete();
                 });
             }
         }
@@ -210,7 +212,13 @@
         }];
         [taskRefs removeAllObjects];
         [fileQueue removeAllObjects];
+        self.isRunning = NO;
     }
+}
+
+- (void)dealloc
+{
+  [defaultSession resetWithCompletionHandler:^{}];
 }
 
 #pragma NSURLSessionTaskDelegate
@@ -219,12 +227,10 @@
    didSendBodyData:(int64_t)bytesSent
     totalBytesSent:(int64_t)totalBytesSent
 totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend{
-    NSProgress *process = [[NSProgress alloc] init];
-    process.totalUnitCount = totalBytesExpectedToSend;
-    process.completedUnitCount = totalBytesSent;
-    if (self.uploadOneFileProgress) {
+    __weak typeof(self) weakSelf = self;
+    if (weakSelf.uploadOneFileProgress) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.uploadOneFileProgress(task.taskDescription.integerValue, process);
+            weakSelf.uploadOneFileProgress(task.taskDescription.integerValue, bytesSent, totalBytesSent, totalBytesExpectedToSend);
         });
     }
 }
@@ -242,21 +248,23 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend{
 
 #ifdef DEBUG
 + (void)checkVersion {
-    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/huhuanming/qiniu_upload/master/Classes/version.json"]];
-    
-    NSURLSessionDataTask *checktask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if (error) {
-            NSLog(@"QiniuUpload cannot check updates, error:%@", error);
-        } else {
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
-            NSNumber *version = dic[@"version"];
-            if (version.intValue > [self version]) {
-                NSLog(@"QiniuUpload was updated! the new version is %@, but current version is %@. https://github.com/huhuanming/qiniu_upload, desc: %@", dic[@"versionName"], [self versionName], dic[@"desc"]);
-            }
-        }
-    }];
-    [checktask resume];
+// TODO:
+// 暂时关闭
+//    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/huhuanming/qiniu_upload/master/Classes/version.json"]];
+//    
+//    NSURLSessionDataTask *checktask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        
+//        if (error) {
+//            NSLog(@"QiniuUpload cannot check updates, error:%@", error);
+//        } else {
+//            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
+//            NSNumber *version = dic[@"version"];
+//            if (version.intValue > [self version]) {
+//                NSLog(@"QiniuUpload was updated! the new version is %@, but current version is %@. https://github.com/huhuanming/qiniu_upload, desc: %@", dic[@"versionName"], [self versionName], dic[@"desc"]);
+//            }
+//        }
+//    }];
+//    [checktask resume];
 }
 #endif
 

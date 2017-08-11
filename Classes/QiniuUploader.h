@@ -13,7 +13,7 @@
 
 typedef void (^UploadOneFileSucceededBlock)(NSInteger index, NSDictionary * _Nonnull info);
 typedef void (^UploadOneFileFailedBlock)(NSInteger index, NSError * _Nullable error);
-typedef void (^UploadOneFileProgressBlock)(NSInteger index, NSProgress * _Nonnull process);
+typedef void (^UploadOneFileProgressBlock)(NSInteger index, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend);
 typedef void (^UploadAllFilesCompleteBlock)(void);
 
 
@@ -26,6 +26,8 @@ typedef void (^UploadAllFilesCompleteBlock)(void);
 @property UploadOneFileProgressBlock _Nullable uploadOneFileProgress;
 @property UploadAllFilesCompleteBlock _Nullable uploadAllFilesComplete;
 @property (assign, atomic)Boolean isRunning;
+
++ (id _Nullable)sharedUploader;
 
 /**
  *  start upload files to qiniu cloud storage.

@@ -45,6 +45,7 @@
 		85DD38931D7ABC98006A77C2 /* ふつうのdisco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */; };
 		85DD38941D7ABC98006A77C2 /* ふつうのdisco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */; };
 		85DD38951D7ABC98006A77C2 /* ふつうのdisco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */; };
+		90D54FE11F3D7D4700E2F51D /* QiniuSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D54FE01F3D7D4600E2F51D /* QiniuSession.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,8 @@
 		85DD38621D7ABA3F006A77C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85DD388E1D7ABC98006A77C2 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		85DD388F1D7ABC98006A77C2 /* ふつうのdisco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ふつうのdisco.mp3"; sourceTree = "<group>"; };
+		90D54FDF1F3D7D4600E2F51D /* QiniuSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuSession.h; sourceTree = "<group>"; };
+		90D54FE01F3D7D4600E2F51D /* QiniuSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiniuSession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				858102281D7ABF1900B8FCB2 /* QUMDefines.h */,
 				858102201D7ABF1900B8FCB2 /* QiniuFile.h */,
 				858102211D7ABF1900B8FCB2 /* QiniuFile.m */,
+				90D54FDF1F3D7D4600E2F51D /* QiniuSession.h */,
+				90D54FE01F3D7D4600E2F51D /* QiniuSession.m */,
 				858102221D7ABF1900B8FCB2 /* QiniuToken.h */,
 				858102231D7ABF1900B8FCB2 /* QiniuToken.m */,
 				8535AB9E1D7ACAE70096FFE5 /* QiniuMultipartElement.h */,
@@ -403,6 +408,7 @@
 				858102301D7ABF1900B8FCB2 /* QiniuUploader.m in Sources */,
 				8535ABB81D7B13350096FFE5 /* NSInputStream+POS.m in Sources */,
 				8535ABBD1D7B13350096FFE5 /* POSFastAssetReader.m in Sources */,
+				90D54FE11F3D7D4700E2F51D /* QiniuSession.m in Sources */,
 				8535ABB91D7B13350096FFE5 /* POSAdjustedAssetReaderIOS7.m in Sources */,
 				8535ABA01D7ACAE70096FFE5 /* QiniuMultipartElement.m in Sources */,
 				8535ABB71D7B13350096FFE5 /* ALAssetsLibrary+POS.m in Sources */,
