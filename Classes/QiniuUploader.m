@@ -283,20 +283,20 @@ totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend{
 
 #ifdef DEBUG
 + (void)checkVersion {
-//    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/huhuanming/qiniu_upload/master/Classes/version.json"]];
-//    NSURLSessionDataTask *checktask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        
-//        if (error) {
-//            NSLog(@"QiniuUpload cannot check updates, error:%@", error);
-//        } else {
-//            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
-//            NSNumber *version = dic[@"version"];
-//            if (version.intValue > [self version]) {
-//                NSLog(@"QiniuUpload was updated! the new version is %@, but current version is %@. https://github.com/huhuanming/qiniu_upload, desc: %@", dic[@"versionName"], [self versionName], dic[@"desc"]);
-//            }
-//        }
-//    }];
-//    [checktask resume];
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/huhuanming/qiniu_upload/master/Classes/version.json"]];
+    NSURLSessionDataTask *checktask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"QiniuUpload cannot check updates, error:%@", error);
+        } else {
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
+            NSNumber *version = dic[@"version"];
+            if (version.intValue > [self version]) {
+                NSLog(@"QiniuUpload was updated! the new version is %@, but current version is %@. https://github.com/huhuanming/qiniu_upload, desc: %@", dic[@"versionName"], [self versionName], dic[@"desc"]);
+            }
+        }
+    }];
+    [checktask resume];
 }
 #endif
 
