@@ -10,6 +10,15 @@
 
 ### Bugfixes
 
+## 3.0.0 Release notes (2017-08-24)
+
+### API breaking changes
+
+* 将 files 从 NSMutableArray 改为 NSArray
+* 将 Block 设置移到了 startUpload 函数上
+* 移除了直接在 QiniuUploader 上设置 Token
+* 添加了并发上传的支持
+
 ## 2.0.3 Release notes (2017-07-24)
 
 =============================================================
