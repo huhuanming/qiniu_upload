@@ -1,12 +1,4 @@
 //
-//  QUMDefines.h
-//  Moto
-//
-//  Created by 胡 桓铭 on 14-2-17.
-//  Copyright (c) 2014年 agile. All rights reserved.
-//
-
-//
 // QUMDefines.h
 //
 //  Copyright 2008 Google Inc.

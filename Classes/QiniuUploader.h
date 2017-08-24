@@ -11,21 +11,12 @@
 #import "QiniuFile.h"
 #import "QiniuInputStream.h"
 
-typedef void (^UploadOneFileSucceededBlock)(NSInteger index, NSDictionary * _Nonnull info);
-typedef void (^UploadOneFileFailedBlock)(NSInteger index, NSError * _Nullable error);
-typedef void (^UploadOneFileProgressBlock)(NSInteger index, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend);
-typedef void (^UploadAllFilesCompleteBlock)(void);
+@interface QiniuUploader : NSObject <NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
-
-@interface QiniuUploader : NSObject <NSURLSessionTaskDelegate>
-
+@property (assign, atomic) NSInteger maxConcurrentNumber;
+@property (assign, atomic, readonly) Boolean isRunning;
 @property (retain, atomic) NSArray * _Nonnull files;
 
-@property UploadOneFileSucceededBlock _Nullable uploadOneFileSucceeded;
-@property UploadOneFileFailedBlock _Nullable uploadOneFileFailed;
-@property UploadOneFileProgressBlock _Nullable uploadOneFileProgress;
-@property UploadAllFilesCompleteBlock _Nullable uploadAllFilesComplete;
-@property (assign, atomic)Boolean isRunning;
 
 + (id _Nullable)sharedUploader;
 
@@ -34,7 +25,11 @@ typedef void (^UploadAllFilesCompleteBlock)(void);
  *  @param AccessToken Qiniu AccessToken from your sever
  *  @return Boolean if files were nil, it will return NO.
  */
-- (Boolean)startUploadWithAccessToken:(NSString * _Nonnull)theAccessToken;
+- (Boolean)startUpload:(NSString * _Nonnull)theAccessToken
+               uploadOneFileSucceededHandler: (nullable void (^)(NSInteger index, NSDictionary * _Nonnull info)) successHandler
+             uploadOneFileFailedHandler: (nullable void (^)(NSInteger index, NSError * _Nullable error)) failHandler
+             uploadOneFileProgressHandler: (nullable void (^)(NSInteger index, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend)) progressHandler
+               uploadAllFilesComplete: (nullable void (^)()) completHandler;
 
 /**
  *  cancel uploading task at once.
@@ -43,13 +38,3 @@ typedef void (^UploadAllFilesCompleteBlock)(void);
 
 
 @end
-
-@interface QiniuIndexFile : NSObject
-
-@property (assign, atomic) NSInteger index;
-@property (retain, nonatomic ,readonly) NSString * _Nonnull uuid;
-
-- (id _Nonnull )initWithIndex:(NSInteger)index;
-
-@end
-
